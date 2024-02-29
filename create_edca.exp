@@ -1,0 +1,38 @@
+#!/usr/bin/expect
+# $1 uC
+# $2 uD
+# $3 psw
+
+
+spawn sudo su postgres
+
+expect "postgres@localhost's password: "
+send "Pa\$\$w0rd\n"
+
+expect "$ "
+send "create database edca\n"
+
+expect "$ "
+send "create user $1 with password '$3'\n"
+
+expect "$ "
+send "grant all privileges on database edca to $1;\n"
+
+expect "$ "
+send "create user $2 with password '$3'\n"
+
+expect "$ "
+send "grant all privileges on database edca to $2;\n"
+
+expect "dashboard=# "
+send "psql edca\n"
+
+expect "edca=# "
+send "\\q\n"
+
+expect "$ "
+send "exit\n"
+
+send "\033[1;33mBase de datos EDCA creada!!\033[0m\n"
+
+expect eof
