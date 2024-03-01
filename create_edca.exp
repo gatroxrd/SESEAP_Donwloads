@@ -4,9 +4,11 @@
 # $3 psw
 
 
-uC=$argv(0)
-uD=$argv(1)
-psw=$argv(2)
+uC=$uC
+uD=$uD
+psw=$psw
+
+echo "$uC"
 
 spawn sudo su postgres
 
