@@ -12,16 +12,16 @@ expect "$ "
 send "create database edca\n"
 
 expect "$ "
-send "create user $uC with password '$psw'\n"
+send "create user uC with password 'psw'\n"
 
 expect "$ "
-send "grant all privileges on database edca to $uC;\n"
+send "grant all privileges on database edca to uC;\n"
 
 expect "$ "
-send "create user $uD with password '$psw'\n"
+send "create user uD with password 'psw'\n"
 
 expect "$ "
-send "grant all privileges on database edca to $uD;\n"
+send "grant all privileges on database edca to uD;\n"
 
 expect "dashboard=# "
 send "psql edca\n"
