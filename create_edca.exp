@@ -9,6 +9,9 @@ expect "postgres@localhost's password: "
 send "Pa\$\$w0rd\n"
 
 expect "$ "
+send "psql \n"
+
+expect "$ "
 send "create database edca;\n"
 
 expect "$ "
