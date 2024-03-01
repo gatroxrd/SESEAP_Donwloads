@@ -3,10 +3,9 @@
 # $2 uD
 # $3 psw
 
-
-uC=$uC
-uD=$uD
-psw=$psw
+set uC $argv(0)
+set uD $argv(1)
+set psw $argv(2)
 
 echo "$uC"
 
