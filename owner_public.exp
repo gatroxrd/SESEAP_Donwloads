@@ -20,6 +20,6 @@ send "\\q\n"
 expect "$ "
 send "exit\n"
 
-send "\033[1;33mScript owner_public.sql ejecutado!\033[0m\n"
+send "Script owner_public.sql ejecutado!"
 
 expect eof
