@@ -20,6 +20,6 @@ send "\\q\n"
 expect "$ "
 send "exit\n"
 
-send "\033[1;33mScript dashboard.sql ejecutado!\033[0m\n"
+send "Script dashboard.sql ejecutado!"
 
 expect eof
