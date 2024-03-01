@@ -32,6 +32,6 @@ send "\\q\n"
 expect "$ "
 send "exit\n"
 
-send "\033[1;33mBase de datos EDCA creada!!\033[0m\n"
+send "Base de datos EDCA creada!!"
 
 expect eof
