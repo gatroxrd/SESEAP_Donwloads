@@ -530,7 +530,7 @@ seleccionaOpcionMenu()
 			"Crear vistas del módulo Infraestructura Abierta"
 			"Crear usuario del aplicativo"
 			"Iniciar los servicios de los módulos"
-			"Cambiar el usuario de PostgreSQL"
+			"Ejecutar del paso 1-10"
 			"Salir"
 		)
 
