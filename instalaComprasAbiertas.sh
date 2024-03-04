@@ -48,7 +48,6 @@ _MongoDB()
 
 _NodeJs()
 {
-
 		#Instalando NodeJs
 		clear
 		sudo curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
@@ -1006,7 +1005,10 @@ paso10()
 
 paso11()
 {
-	sudo apt install npm
+	sudo apt update
+	#sudo apt install --reinstall nodejs
+	sudo apt clean
+	#sudo apt install npm
 	#Instalación de Object Relational Mapping del módulo de Infraestructura
 	cd /var/www/html/contratacionesabiertas
 	cd captura
@@ -1038,8 +1040,8 @@ paso12()
 
     chmod -R 777 update_InfraestructuraAbiertav1.sql
 	sudo perl -pi -e "s[prueba_captura][$uC]g" update_InfraestructuraAbiertav1.sql
-    #sudo perl -pi -e "s[prueba_dashboard][$uD]g" update_InfraestructuraAbiertav1.sql
-	#sudo perl -pi -e "s[prueba_dashboard][$psw]g" update_InfraestructuraAbiertav1.sql
+    sudo perl -pi -e "s[prueba_dashboard][$uD]g" update_InfraestructuraAbiertav1.sql
+	sudo perl -pi -e "s[prueba_dashboard][$psw]g" update_InfraestructuraAbiertav1.sql
 
 	chmod +x update_InfraestructuraAbiertav1.exp	
 	expect update_InfraestructuraAbiertav1.exp
