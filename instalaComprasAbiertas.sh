@@ -67,11 +67,11 @@ _NodeJs()
                 sudo sudo mv node-v18.12.1-linux-x64/* /usr/local/bin
                 #------------------
                 #sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh 
-                ruta_script=$(readlink -f “$0”)
-                sudo wget -O  ruta_script  https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh
-                cd "$(dirname "$ruta_script")"
-                sudo chmod +u+x ruta_script
-                sudo ./ruta_script
+                install.sh=$(readlink -f “$0”)
+                sudo wget -O  install.sh  https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh
+                cd "$(dirname "$install.sh")"
+                sudo chmod +u+x install.sh
+                sudo ./install.sh
                 #- - - - - - - - - -
                 nvm install 18.12.1
                 echo -e " \033[33mNodeJs 18 instalado!\033[0m."
