@@ -1087,18 +1087,19 @@ paso13()
 	uC=$usuarioCaptura
 	uD=$usuarioDashboard
 	psw=$password
-    cd /var/www/html/contratacionesabiertas/captura
-	chmod -R 777 /var/www/html/contratacionesabiertas/captura/node_modules
-	npm install bluebird
-	sudo npm uninstall mongoose
-	sudo rm -rf node_modules
-	sudo npm install mongoose
-	npm update mongoose
+	sudo npm update --force
+        cd /var/www/html/contratacionesabiertas/captura
+
+	#chmod -R 777 /var/www/html/contratacionesabiertas/captura/node_modules
+	#npm install bluebird
+	#sudo npm uninstall mongoose
+	#sudo rm -rf node_modules
+	#sudo npm install mongoose
+	#npm update mongoose
 
 	#sudo npm install --global bcryptjs
- 	sudo npm install bcrypt
-	npm list --global
-	sudo chmod a+rwx /usr/local/lib/node_modules/bcryptjs
+	#npm list --global
+	#sudo chmod a+rwx /usr/local/lib/node_modules/bcryptjs
 
 	chmod u+x useradm
 	sudo ./useradm add pde_captura
