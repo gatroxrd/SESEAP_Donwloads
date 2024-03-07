@@ -74,6 +74,7 @@ _NodeJs()
                 sudo ./install.sh
                 #- - - - - - - - - -
                 nvm install 18.12.1
+				sudo apt install npm
                 echo -e " \033[33mNodeJs 18 instalado!\033[0m."
                 #echo "NodeJs 18 instalado!"
 
@@ -436,13 +437,27 @@ prerrequisitosInstalacion()
 						echo -e "\033[31m###### INSTALACIÓN DE TODO EL SOFTWARE REQUERIDO INSTALADO ##########\033[0m"
 						echo -e "\033[31m#####################################################################\033[0m"					
 						echo "Se procede a instalar todo el software necesario"
+						echo -e "\e[33mIniciando Visual Code.\e[0m"
 						_VisualCode
+						echo -e "\e[33mPaso Visual Code terminado.\e[0m"
+						echo -e "\e[33mIniciando PostgreSQL.\e[0m"
 						_PostgreSQL
+						echo -e "\e[33mPaso PostgreSQL terminado.\e[0m"
+						echo -e "\e[33mIniciando Mongo DB\e[0m"
 						_MongoDB
+						echo -e "\e[33mPaso Mongo DB terminado.\e[0m"
+						echo -e "\e[33mIniciando NodeJs\e[0m"
 						_NodeJs
+						echo -e "\e[33mPaso NodeJs terminado.\e[0m"
+						echo -e "\e[33mIniciando Nginx\e[0m"
 						_Nginx
+						echo -e "\e[33mPaso Nginx terminado.\e[0m"
+						echo -e "\e[33mIniciando Pm2\e[0m"
 						_Pm2 
+						echo -e "\e[33mPaso Pm2 terminado.\e[0m"
+						echo -e "\e[33mIniciando Git\e[0m"
 						_Git
+						echo -e "\e[33mPaso Git terminado.\e[0m"
 					else
 						echo "La selección tecleada no es válida"
 						exit
