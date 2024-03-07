@@ -1095,7 +1095,8 @@ paso13()
 	sudo npm install mongoose
 	npm update mongoose
 
-	sudo npm install --global bcryptjs
+	#sudo npm install --global bcryptjs
+ 	sudo npm install bcrypt
 	npm list --global
 	sudo chmod a+rwx /usr/local/lib/node_modules/bcryptjs
 
