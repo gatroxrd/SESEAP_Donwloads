@@ -1101,6 +1101,15 @@ paso13()
 	#npm list --global
 	#sudo chmod a+rwx /usr/local/lib/node_modules/bcryptjs
 
+	#sudo apt update
+	sudo apt install nodejs=16.20.1
+	echo -e "\e[33mNodeJs 16.20.1 instalado.\e[0m"
+	#sudo echo "deb https://deb.nodesource.com/node_16.x focal main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+	#sudo curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
+	sudo apt update
+	sudo npm install mongoose@6.18.1
+	echo -e "\e[33mMoongose 6.18.1 actualizado.\e[0m"
+
 	chmod u+x useradm
 	sudo ./useradm add pde_captura
 }
