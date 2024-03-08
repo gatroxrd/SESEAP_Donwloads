@@ -98,7 +98,7 @@ _Pm2()
 
 		echo "Instalando PM2"
 		sudo apt update
-		sudo apt  install nodejs
+		#sudo apt  install nodejs
 		sudo npm install pm2@latest -g
 		sudo chmod +x /usr/local/bin/pm2
 		echo -e " \033[33mPM2 instalado!\033[0m."
