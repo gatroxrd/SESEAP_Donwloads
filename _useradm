@@ -1,0 +1,164 @@
+#!/usr/bin/env node
+
+if (typeof process.argv[2] !== 'undefined') {
+  const mongoose = require('mongoose');
+  const bcrypt = require('bcrypt-nodejs');
+  const dbConfig = require('./db.js');
+  const User = require('./models/user');
+
+  mongoose.connect(dbConfig.url, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('Error connecting to MongoDB:', err));
+
+  const prompt = require('prompt');
+  prompt.start();
+
+  switch (process.argv[2]) {
+    case "add":
+      if (typeof process.argv[3] !== 'undefined') {
+        User.findOne({ username: process.argv[3] })
+          .then(user => {
+            if (user) {
+              console.log('User already exists with username:', process.argv[3]);
+              return mongoose.disconnect();
+            }
+
+            console.log('Está a punto de crear el usuario:', process.argv[3]);
+
+            const schema = {
+              properties: {
+                name: {
+                  description: 'Nombre',
+                  pattern: /^[a-zA-Z\s\-]+$/,
+                  message: 'Nombre',
+                  required: true
+                },
+                lastname: {
+                  description: "Apellidos",
+                  pattern: /^[a-zA-Z\s\-]+$/,
+                  message: 'Apellidos',
+                  required: true
+                },
+                password: {
+                  hidden: true,
+                  required: true,
+                  description: 'Ingrese una contraseña',
+                  replace: '*'
+                },
+                isAdmin: {
+                  description: '¿El usuario es administrador? (t = Sí; f = No)',
+                  format: "boolean",
+                  required: true,
+                  default: false,
+                  message: 'Propocione una respuesta válida (t = Sí; f = No)'
+                },
+                email: {
+                  description: 'Ingrese su email',
+                  format: 'email',
+                  required: true,
+                  message: 'Ingrese un email válido'
+                },
+                address: {
+                  description: 'Proporcione su dirección',
+                  required: true,
+                  message: 'Debe proporcinar una dirección'
+                }
+              }
+            };
+
+            prompt.get(schema, (error, result) => {
+              const newUser = new User({
+                name: result.name,
+                lastname: result.lastname,
+                username: process.argv[3],
+                password: bcrypt.hashSync(result.password, bcrypt.genSaltSync(10), null),
+                isAdmin: result.isAdmin,
+                email: result.email,
+                address: result.address
+              });
+
+              newUser.save()
+                .then(user => console.log('User added:', user))
+                .catch(err => console.error('Error adding user:', err))
+                .finally(() => mongoose.disconnect());
+            });
+          })
+          .catch(err => console.error('Error searching user:', err));
+      } else {
+        console.log("Example:\n\t./useradm add <username>");
+        mongoose.disconnect();
+      }
+      break;
+    case "delete":
+      if (typeof process.argv[3] !== 'undefined') {
+        console.log("Delete user:");
+        User.find({ username: process.argv[3] })
+          .then(users => {
+            if (users.length === 0) {
+              console.log("User not found:", process.argv[3]);
+              return mongoose.disconnect();
+            }
+
+            console.log(`Deleting ${users.length} users`);
+            return Promise.all(users.map(user => user.remove()));
+          })
+          .then(() => console.log('Users deleted'))
+          .catch(err => console.error('Error deleting user:', err))
+          .finally(() => mongoose.disconnect());
+      } else {
+        console.log('Example:\n\t./useradm delete <username>');
+        mongoose.disconnect();
+      }
+      break;
+  case "chpwd":
+        if (typeof process.argv[3] !== 'undefined') {
+          const schema = {
+            properties: {
+              password: {
+                hidden: true,
+                required: true,
+                description: 'Ingrese la nueva contraseña',
+                replace: '*'
+              }
+            }
+          };
+      
+          prompt.get(schema, (error, result) => {
+            User.findOne({ username: process.argv[3] })
+              .then(user => {
+                if (user) {
+                  user.password = bcrypt.hashSync(result.password, bcrypt.genSaltSync(10), null);
+                  return user.save();
+                } else {
+                  console.log("User not found:", process.argv[3]);
+                  return Promise.reject(new Error('User not found'));
+                }
+              })
+              .then(updatedUser => console.log('Change user password:\n', updatedUser))
+              .catch(err => console.error('Error changing user password:', err))
+              .finally(() => mongoose.disconnect());
+          });
+        }
+   else {
+          console.log("Example:\n\t./useradm chpwd <username>");
+          mongoose.disconnect();
+        }
+  break;
+  case "list":
+          console.log("User list:");
+        
+          User.find()
+            .then(users => console.log(users))
+            .catch(err => console.error('Error fetching users:', err))
+            .finally(() => mongoose.disconnect());
+        
+  break; 
+  default:
+    console.log ("Unrecognized option");
+    mongoose.disconnect();
+}
+
+}else{
+console.log("Usage: ./useradm <command>\n\twhere <command> is one of:\n" +
+"\tadd, delete, chpwd, list");
+}  
