@@ -651,6 +651,8 @@ seleccionaOpcionMenu()
 					echo -e "\e[33mPaso 14 terminado.\e[0m"
 					;;	
 				15)
+					paso15
+				16)
 					# ...
 					configuraPostgreSQL
 					reestablecePasswordPostgreSQL
@@ -672,11 +674,21 @@ seleccionaOpcionMenu()
 					paso9
 					echo -e "\e[33mPaso 9 terminado.\e[0m"
 					paso10
-					echo -e "\e[33mPaso 10 terminado.\e[0m"															
-					echo -e "\e[33mPasos 1-10 terminados.\e[0m"
+					echo -e "\e[33mPaso 10 terminado.\e[0m"	
+					paso11
+					echo -e "\e[33mPaso 11 terminado.\e[0m"	
+					paso12
+					echo -e "\e[33mPaso 12 terminado.\e[0m"	
+					paso13
+					echo -e "\e[33mPaso 13 terminado.\e[0m"	
+					paso14
+					echo -e "\e[33mPaso 14 terminado.\e[0m"	
+					paso15
+					echo -e "\e[33mPaso 15 terminado.\e[0m"																
+					echo -e "\e[33mPasos 1-15 terminados.\e[0m"
 					;;																												
 			esac
-		elif [[ $opcionMenu =~ ^[17]$ ]]; then
+		elif [[ $opcionMenu =~ ^[18]$ ]]; then
 			echo "Saliendo del menú."
 			break
 		else
@@ -1088,24 +1100,8 @@ paso13()
 	uD=$usuarioDashboard
 	psw=$password
 	sudo npm update --force
-        cd /var/www/html/contratacionesabiertas/captura
+    cd /var/www/html/contratacionesabiertas/captura
 
-	#chmod -R 777 /var/www/html/contratacionesabiertas/captura/node_modules
-	#npm install bluebird
-	#sudo npm uninstall mongoose
-	#sudo rm -rf node_modules
-	#sudo npm install mongoose
-	#npm update mongoose
-
-	#sudo npm install --global bcryptjs
-	#npm list --global
-	#sudo chmod a+rwx /usr/local/lib/node_modules/bcryptjs
-
-	#sudo apt update
-	#sudo apt install nodejs=16.20.1
-
-	#sudo echo "deb https://deb.nodesource.com/node_16.x focal main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-	#sudo curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
 	sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 	sudo apt-get install gcc g++ make
 
@@ -1113,12 +1109,11 @@ paso13()
 
 	echo -e "\e[33mNodeJs 16.20.1 instalado.\e[0m"
 	sudo apt update
-	#sudo npm install mongoose@6.18.1
 	npm install mongoose
 	echo -e "\e[33mMoongose 6.18.1 actualizado.\e[0m"
 
 	chmod u+x useradm
-	sudo ./useradm add pde_captura
+	sudo ./useradm add $uC
 }
 
 paso14()
@@ -1128,6 +1123,20 @@ paso14()
 	cd ..
 	cd dashboard
 	pm2 start npm --name "dashboard" -- start
+	pm2 save
+}
+
+paso 15()
+{
+	# Obtener la IP local
+	ip_local=$(hostname -I | awk '{print $1}')
+
+	# Abrir Firefox en la IP local:3000
+	firefox "http://$ip_local:3000" &
+
+	# Mostrar un mensaje informativo
+	echo "Abriendo Plataforma de COmpras ABiertas del INAI en http://$ip_local:3000..."
+
 }
 
 administradorBD_PostgreSQL()
