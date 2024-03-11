@@ -561,7 +561,8 @@ seleccionaOpcionMenu()
 			"Crear vistas del módulo Infraestructura Abierta"
 			"Crear usuario del aplicativo"
 			"Iniciar los servicios de los módulos"
-			"Ejecutar del paso 1-10"
+			"Lanza la plataforma de captura de ComprasAbiertas del INAI"
+			"Ejecutar del paso 1-16"
 			"Salir"
 		)
 
@@ -575,7 +576,7 @@ seleccionaOpcionMenu()
 		read opcionMenu
 
 		# Validar la opción del usuario
-		if [[ $opcionMenu =~ ^[1-9]|10$|11$|12$|13$|14$|15$|16$ ]]; then
+		if [[ $opcionMenu =~ ^[1-9]|10$|11$|12$|13$|14$|15$|16$|17$ ]]; then
 			echo "Seleccionó la opción $opcionMenu."
 			# Aquí puedes agregar el código para la opción seleccionada
 			case $opcionMenu in
@@ -652,6 +653,7 @@ seleccionaOpcionMenu()
 					;;	
 				15)
 					paso15
+					;;
 				16)
 					# ...
 					configuraPostgreSQL
@@ -1039,6 +1041,7 @@ paso10()
 	chmod -R 777 main.ejs
 	sudo perl -pi -e "s[pk.eyJ1IjoiamFtZzE0IiwiYSI6ImNqdTM4cW04aDBrbnQ0NG83ZnM4cWVnOGgifQ.d6L_McpNmO9s_MsPk5loOw][$mapToken]g" main.ejs
 	cd ..
+	cd ..
 	cd dashboard
 	cd views
 	#Substituir pk.eyJ1IjoiamFtZzE0IiwiYSI6ImNqdTM4cW04aDBrbnQ0NG83ZnM4cWVnOGgifQ.d6L_McpNmO9s_MsPk5loOw
@@ -1049,6 +1052,7 @@ paso10()
 
 paso11()
 {
+	sudo npm update -g npm --force
 	sudo apt update
 	#sudo apt install --reinstall nodejs
 	sudo apt clean
@@ -1126,14 +1130,14 @@ paso14()
 	pm2 save
 }
 
-paso 15()
+paso15()
 {
 	# Obtener la IP local
 	ip_local=$(hostname -I | awk '{print $1}')
-
+	su - pdepuebla
 	# Abrir Firefox en la IP local:3000
-	firefox "http://$ip_local:3000" &
-
+	firefox "http://localhost:3000"
+	exit  
 	# Mostrar un mensaje informativo
 	echo "Abriendo Plataforma de COmpras ABiertas del INAI en http://$ip_local:3000..."
 
