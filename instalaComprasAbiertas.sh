@@ -103,8 +103,7 @@ _Pm2()
 		sudo chmod +x /usr/local/bin/pm2
 		echo -e " \033[33mPM2 instalado!\033[0m."
 		#echo "PM2 instalado"
-
-
+		sudo npm install -g npm@10.5.0 
 }
 
 _VisualCode()
@@ -677,15 +676,15 @@ seleccionaOpcionMenu()
 					echo -e "\e[33mPaso 9 terminado.\e[0m"
 					paso10
 					echo -e "\e[33mPaso 10 terminado.\e[0m"	
-					paso11
-					echo -e "\e[33mPaso 11 terminado.\e[0m"	
-					paso12
-					echo -e "\e[33mPaso 12 terminado.\e[0m"	
-					paso13
-					echo -e "\e[33mPaso 13 terminado.\e[0m"	
-					paso14
-					echo -e "\e[33mPaso 14 terminado.\e[0m"	
-					paso15
+					#paso11
+					#echo -e "\e[33mPaso 11 terminado.\e[0m"	
+					#paso12
+					#echo -e "\e[33mPaso 12 terminado.\e[0m"	
+					#paso13
+					#echo -e "\e[33mPaso 13 terminado.\e[0m"	
+					#paso14
+					#echo -e "\e[33mPaso 14 terminado.\e[0m"	
+					#paso15
 					echo -e "\e[33mPaso 15 terminado.\e[0m"																
 					echo -e "\e[33mPasos 1-15 terminados.\e[0m"
 					;;																												
@@ -1060,7 +1059,8 @@ paso11()
 	#Instalación de Object Relational Mapping del módulo de Infraestructura
 	cd /var/www/html/contratacionesabiertas
 	cd captura
-	npm install -g sequelize-cli
+	#npm install -g sequelize-cli
+	npm install sequelize-cli@6.6.3
 	sequelize db:migrate
 	sequelize db:seed:all
 	echo "Migraciones listas!"
