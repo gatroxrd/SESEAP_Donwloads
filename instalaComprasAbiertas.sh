@@ -65,6 +65,7 @@ _NodeJs()
                 sudo wget https://nodejs.org/dist/v18.12.1/node-v18.12.1-linux-x64.tar.gz
                 sudo tar -xf node-v18.12.1-linux-x64.tar.gz
                 sudo sudo mv node-v18.12.1-linux-x64/* /usr/local/bin
+                nvm install 18.12.1				
                 #------------------
                 #sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh 
                 install.sh=$(readlink -f “$0”)
@@ -73,7 +74,7 @@ _NodeJs()
                 sudo chmod +u+x install.sh
                 sudo ./install.sh
                 #- - - - - - - - - -
-                nvm install 18.12.1
+
 				sudo apt install npm
                 echo -e " \033[33mNodeJs 18 instalado!\033[0m."
                 #echo "NodeJs 18 instalado!"
@@ -1051,16 +1052,17 @@ paso10()
 
 paso11()
 {
-	sudo npm update -g npm --force
+	#npm install -g npm-force-update
+	sudo apt-get remove --auto-remove
 	sudo apt update
 	#sudo apt install --reinstall nodejs
-	sudo apt clean
-	#sudo apt install npm
+	#sudo apt clean
+	sudo apt install npm
 	#Instalación de Object Relational Mapping del módulo de Infraestructura
 	cd /var/www/html/contratacionesabiertas
 	cd captura
-	#npm install -g sequelize-cli
-	npm install sequelize-cli@6.6.3
+	sudo npm install -g sequelize-cli --verbose
+
 	sequelize db:migrate
 	sequelize db:seed:all
 	echo "Migraciones listas!"
