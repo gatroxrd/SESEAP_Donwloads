@@ -114,6 +114,38 @@ _NodeJs2()
 
 }
 
+_NodeJs3()
+{
+		sudo apt-get remove nodejs npm
+		sudo rm /usr/local/bin/node
+		sudo rm /usr/local/bin/npm
+		sudo rm -rf /etc/nodejs
+		sudo rm -rf ~/.npm
+		sudo rm -rf ~/.cache/node-gyp
+		nvm uninstall
+	#------------------------------------------
+	#Instalando Node 18.19.1 - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - -
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+	export NVM_DIR="$HOME/.nvm" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+	nvm install 18.19.1
+	node -v
+	#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	#Instalando Sequelize 7.0.0
+	sudo apt update
+	#sudo apt upgrade
+	#Opcional sudo apt install nodejs
+	#Sugerido como previo actualizar NPM 
+	npm install -g npm@10.5.0
+	#Instalando el sequelize CLI
+	npm install --global sequelize-cli
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	sudp apt update
+	#Instalando sequelize ORM
+	npm install --global sequelize@6.7.0
+	sudo chmod a+x /usr/local/bin/sequelize
+	sequelize --version
+}
+
 _Nginx()
 {
 
@@ -132,11 +164,10 @@ _Pm2()
 		echo "Instalando PM2"
 		sudo apt update
 		#sudo apt  install nodejs
-		sudo npm install pm2@latest -g
-		sudo chmod +x /usr/local/bin/pm2
+		npm install pm2@latest -g
+		#sudo chmod +x /usr/local/bin/pm2
 		echo -e " \033[33mPM2 instalado!\033[0m."
 		#echo "PM2 instalado"
-		sudo npm install -g npm@10.5.0 
 }
 
 _VisualCode()
@@ -479,7 +510,7 @@ prerrequisitosInstalacion()
 						_MongoDB
 						echo -e "\e[33mPaso Mongo DB terminado.\e[0m"
 						echo -e "\e[33mIniciando NodeJs\e[0m"
-						_NodeJs2
+						#_NodeJs2
 						echo -e "\e[33mPaso NodeJs terminado.\e[0m"
 						echo -e "\e[33mIniciando Nginx\e[0m"
 						_Nginx
@@ -1089,14 +1120,17 @@ paso11()
 	#sudo apt update
 			#sudo apt install --reinstall nodejs
 			#sudo apt clean
-	#sudo apt install npm
+	cd /
+	sudo apt install npm
 	#Instalación de Object Relational Mapping del módulo de Infraestructura
 	cd /var/www/html/contratacionesabiertas
 	cd captura
-	sudo npm install -g sequelize-cli --verbose
+	npm install pg
+	npm install -g sequelize-cli --verbose
 
 	sequelize db:migrate
 	sequelize db:seed:all
+
 	echo "Migraciones listas!"
 }
 
