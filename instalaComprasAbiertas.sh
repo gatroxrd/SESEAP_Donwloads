@@ -181,7 +181,7 @@ _VisualCode()
 		sudo apt update
 		sudo apt install code
 		sudo snap install brave
-		sudo snap install dbeaver-ce
+		#sudo snap install dbeaver-ce
 		sudo apt install expect
 		sudo apt install curl
 		echo -e " \033[33mVisual Code, DBeaver,  Brave Browser y Expect instalado!\033[0m."
