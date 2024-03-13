@@ -510,7 +510,7 @@ prerrequisitosInstalacion()
 						_MongoDB
 						echo -e "\e[33mPaso Mongo DB terminado.\e[0m"
 						echo -e "\e[33mIniciando NodeJs\e[0m"
-						#_NodeJs2
+						_NodeJs3
 						echo -e "\e[33mPaso NodeJs terminado.\e[0m"
 						echo -e "\e[33mIniciando Nginx\e[0m"
 						_Nginx
