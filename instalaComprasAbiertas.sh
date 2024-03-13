@@ -1201,6 +1201,8 @@ paso13()
 
 paso14()
 {
+	cd /
+ 	sudo npm install pm2 -g
 	cd /var/www/html/contratacionesabiertas/captura
 	pm2 start npm --name "captura" -- start
 	cd ..
