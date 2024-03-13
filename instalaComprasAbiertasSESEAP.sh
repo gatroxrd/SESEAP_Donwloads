@@ -163,6 +163,7 @@ _Pm2()
 
 		echo "Instalando PM2"
 		sudo apt update
+		#sudo apt  install nodejs
 		#npm install pm2@latest -g
 		sudo npm install pm2 -g
 		#sudo chmod +x /usr/local/bin/pm2
@@ -716,6 +717,7 @@ seleccionaOpcionMenu()
 					;;	
 				15)
 					paso15
+					echo -e "\e[33mPaso 15 terminado.\e[0m"
 					;;
 				16)
 					# ...
@@ -740,15 +742,15 @@ seleccionaOpcionMenu()
 					echo -e "\e[33mPaso 9 terminado.\e[0m"
 					paso10
 					echo -e "\e[33mPaso 10 terminado.\e[0m"	
-					#paso11
-					#echo -e "\e[33mPaso 11 terminado.\e[0m"	
-					#paso12
-					#echo -e "\e[33mPaso 12 terminado.\e[0m"	
-					#paso13
-					#echo -e "\e[33mPaso 13 terminado.\e[0m"	
-					#paso14
-					#echo -e "\e[33mPaso 14 terminado.\e[0m"	
-					#paso15
+					paso11
+					echo -e "\e[33mPaso 11 terminado.\e[0m"	
+					paso12
+					echo -e "\e[33mPaso 12 terminado.\e[0m"	
+					paso13
+					echo -e "\e[33mPaso 13 terminado.\e[0m"	
+					paso14
+					echo -e "\e[33mPaso 14 terminado.\e[0m"	
+					paso15
 					echo -e "\e[33mPaso 15 terminado.\e[0m"																
 					echo -e "\e[33mPasos 1-15 terminados.\e[0m"
 					;;																												
@@ -1186,6 +1188,15 @@ paso13()
 
 	chmod u+x useradm
 	sudo ./useradm add $uC
+	#--------------------------------------------------------
+	#Preparando limpieza de fin de instalación
+	cd /
+	sudo rm -r update_InfraestructuraAbiertav1.exp
+	sudo rm -r owner_dashboard.exp
+	sudo rm -r dashboard.exp
+	sudo rm -r owner_public.exp
+	sudo rm -r edca.exp
+	sudo rm -r create_edca.exp
 }
 
 paso14()
@@ -1200,15 +1211,11 @@ paso14()
 
 paso15()
 {
-	# Obtener la IP local
-	ip_local=$(hostname -I | awk '{print $1}')
-	su - pdepuebla
 	# Abrir Firefox en la IP local:3000
-	firefox "http://localhost:3000"
-	exit  
+	firefox 'http://localhost:3000'
+	echo "Abriendo Plataforma de COmpras ABiertas del INAI en http://localhost:3000 "	
+	cd /
 	# Mostrar un mensaje informativo
-	echo "Abriendo Plataforma de COmpras ABiertas del INAI en http://$ip_local:3000..."
-
 }
 
 administradorBD_PostgreSQL()
