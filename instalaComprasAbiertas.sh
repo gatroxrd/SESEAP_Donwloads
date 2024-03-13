@@ -1213,9 +1213,7 @@ paso14()
 
 paso15()
 {
-	# Abrir Firefox en la IP local:3000
-	firefox 'http://localhost:3000'
-	echo "Abriendo Plataforma de COmpras ABiertas del INAI en http://localhost:3000 "	
+	echo "Ya puede abrir la Plataforma de Compras Abiertas del INAI configurada y desplegada automaticamente por la SESEAP, solo presione la tecla CTRL y habla click sobre el siguiente link: \033[33m http://localhost:3000 \033[0m. "	
 	cd /
 	# Mostrar un mensaje informativo
 }
