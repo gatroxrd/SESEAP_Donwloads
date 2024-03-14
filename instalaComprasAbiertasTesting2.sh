@@ -367,7 +367,6 @@ paso2Auto()
     echo "Iniciando tareas de creación de la base de datos EDCA"
     CreacionBaseDatos "$respuestaUsuarioCaptura"  "$respuestaUsuarioDashboard"	"$respuestaPassword"
 	#Crea las credenciales necesarias para actualizar los esquemas necesarios de PostgreSQL 
-	creaArchivoCredencialesAuto
 }
 
 paso3()
@@ -1108,6 +1107,7 @@ Principal()
 			echo -e "\e[33mIniciando Git\e[0m"
 			_Git
 			echo -e "\e[33mPaso Git terminado.\e[0m"
+			creaArchivoCredencialesAuto
 			configuraPostgreSQLAuto
 			reestablecePasswordPostgreSQLAuto
 			echo -e "\e[33mPaso 1 terminado.\e[0m"
