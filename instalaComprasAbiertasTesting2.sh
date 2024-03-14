@@ -160,6 +160,18 @@ configuraPostgreSQL()
 	fi
 }
 
+configuraPostgreSQLAuto()
+{
+	echo "Configurando el archivo 'pg_hda.conf' PostgreSQL"
+	cd /etc/postgresql/16/main/
+		chmod -R 777 pg_hba.conf
+		sudo perl -pi -e "s[local   all             all                                     peer][local   all             all                                     trust]g" pg_hba.conf
+		sudo perl -pi -e "s[host    all             all             127.0.0.1/32            scram-sha-256][host    all             all             127.0.0.1/32            trust]g" pg_hba.conf
+		sudo perl -pi -e "s[host    replication     all             127.0.0.1/32            scram-sha-256][host    replication     all             127.0.0.1/32            ident]g" pg_hba.conf
+		sudo perl -pi -e "s[host    replication     all             ::1/128                 scram-sha-256][host    replication     all             ::1/128                 ident]g" pg_hba.conf
+		echo -e " \033[33mArchivo pg_hba.conf ha sido configurado!\033[0m."
+}
+
 reestablecePasswordPostgreSQL()
 {
 	echo "Desea reestablecer el password de PostgreSQL [S/N]:"
@@ -170,6 +182,12 @@ reestablecePasswordPostgreSQL()
 			#Estableciendo el nuevo password para controlar PostgreSQL
 			sudo passwd postgres
 	fi
+}
+
+reestablecePasswordPostgreSQLAuto()
+{
+	echo "Establezca el nuevo password de PostgreSQL."
+	sudo passwd postgres
 }
 
 CreacionBaseDatos()
@@ -235,6 +253,28 @@ creaArchivoCredenciales()
 
 }
 
+creaArchivoCredencialesAuto()
+{
+	# Obtenemos la ruta del script
+	ruta_script=$(readlink -f "$0")
+
+	# Definimos las 3 cadenas de texto
+	usuarioCaptura="pde_captura"
+	usuarioDashboard="pde_dashboard"
+	password="C0ntras3ña"
+
+	sudo rm - r ruta_script
+
+	# Creamos el archivo en la misma ubicación que el script
+	archivo_texto="${ruta_script%.*}.txt"
+	echo "$usuarioCaptura" > "$archivo_texto"
+	echo "$usuarioDashboard" >> "$archivo_texto"
+	echo "$password" >> "$archivo_texto"
+
+	echo "Archivo creado con las credenciales: $archivo_texto"
+
+}
+
 recuperaArchivoCredenciales()
 {
 	cd /
@@ -276,7 +316,6 @@ recuperaArchivoCredenciales()
 
 descargaArchivosFuenteINAI()
 {
-	#sudo mkdir /var/www/html/contratacionesabiertas
 	cd /var
 	sudo mkdir www
 	sudo chmod 777 www
@@ -286,7 +325,6 @@ descargaArchivosFuenteINAI()
 	cd html
 	sudo mkdir contratacionesabiertas
 	sudo chmod 777 contratacionesabiertas
-	#cd /var/www/html/contratacionesabiertas
 	cd contratacionesabiertas
 	sudo git clone https://github.com/datosabiertosmx/contrataciones-abiertas-infraestructura
 	cd contrataciones-abiertas-infraestructura/contratacionesabiertas/
@@ -318,6 +356,20 @@ paso2()
     fi
 }
 
+paso2Auto()
+{
+	echo -e "\033[31m#####################################################################\033[0m"
+	echo -e "\033[31m############ CREANDO LA BASE DE DATOS EDCA ##########################\033[0m"
+	echo -e "\033[31m#####################################################################\033[0m"
+	rUC=$1 
+	rUD=$2	
+	psw=$3
+    echo "Iniciando tareas de creación de la base de datos EDCA"
+    CreacionBaseDatos "$respuestaUsuarioCaptura"  "$respuestaUsuarioDashboard"	"$respuestaPassword"
+	#Crea las credenciales necesarias para actualizar los esquemas necesarios de PostgreSQL 
+	creaArchivoCredencialesAuto
+}
+
 paso3()
 {
 
@@ -333,6 +385,15 @@ paso3()
 			#cd /var/www/html/contratacionesabiertas
     fi	
 
+}
+
+paso3Auto()
+{
+	echo -e "\033[31m#####################################################################\033[0m"
+	echo -e "\033[31m############ DESCARGA DE ARCHIVOS FUENTE ############################\033[0m"
+	echo -e "\033[31m#####################################################################\033[0m"
+    echo "Iniciando tareas de descarga del proyecto de Compras Abiertas del INAI"
+	descargaArchivosFuenteINAI
 }
 
 paso4()
@@ -565,11 +626,6 @@ paso10()
 
 paso11()
 {
-			#npm install -g npm-force-update
-	#sudo apt-get remove --auto-remove
-	#sudo apt update
-			#sudo apt install --reinstall nodejs
-			#sudo apt clean
 	cd /
 	sudo apt install npm
 	#Instalación de Object Relational Mapping del módulo de Infraestructura
@@ -1052,12 +1108,16 @@ Principal()
 			echo -e "\e[33mIniciando Git\e[0m"
 			_Git
 			echo -e "\e[33mPaso Git terminado.\e[0m"
-			configuraPostgreSQL
-			reestablecePasswordPostgreSQL
+			configuraPostgreSQLAuto
+			reestablecePasswordPostgreSQLAuto
 			echo -e "\e[33mPaso 1 terminado.\e[0m"
-			paso2 "$respuestaUsuarioCaptura"  "$respuestaUsuarioDashboard"	"$respuestaPassword"
+			recuperaArchivoCredenciales
+			uC=$usuarioCaptura
+			uD=$usuarioDashboard
+			psw=$password
+			paso2Auto "$respuestaUsuarioCaptura"  "$respuestaUsuarioDashboard"	"$respuestaPassword"
 			echo -e "\e[33mPaso 2 terminado.\e[0m"
-			paso3
+			paso3Auto
 			echo -e "\e[33mPaso 3 terminado.\e[0m"
 			paso4 "$respuestaUsuarioCaptura"  "$respuestaPassword"
 			echo -e "\e[33mPaso 4 terminado.\e[0m"
