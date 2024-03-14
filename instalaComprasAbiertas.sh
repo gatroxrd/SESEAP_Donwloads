@@ -1,7 +1,10 @@
 #!/bin/bash
 #USTPD
 #gatrixrd@gmail.com
+#gabriel.rodriguez@seseap.puebla.gob.mx
 
+
+####################### P A Q U E T E S    R E Q U E R I D O S ##########################################
 _PostgreSQL()
 {
 
@@ -48,74 +51,6 @@ _MongoDB()
 
 _NodeJs()
 {
-
-                sudo apt-get remove nodejs npm
-                sudo rm /usr/local/bin/node
-                sudo rm /usr/local/bin/npm
-                sudo rm -rf /etc/nodejs
-                sudo rm -rf ~/.npm
-                sudo rm -rf ~/.cache/node-gyp
-                nvm uninstall
-                #------------------------------------------
-                #Instalando NodeJs
-                clear
-                sudo curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-                sudo apt update
-                sudo apt install nodejs
-                sudo wget https://nodejs.org/dist/v18.12.1/node-v18.12.1-linux-x64.tar.gz
-                sudo tar -xf node-v18.12.1-linux-x64.tar.gz
-                sudo sudo mv node-v18.12.1-linux-x64/* /usr/local/bin
-                nvm install 18.12.1				
-                #------------------
-                #sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh 
-                install.sh=$(readlink -f “$0”)
-                sudo wget -O  install.sh  https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh
-                cd "$(dirname "$install.sh")"
-                sudo chmod +u+x install.sh
-                sudo ./install.sh
-                #- - - - - - - - - -
-
-				sudo apt install npm
-                echo -e " \033[33mNodeJs 18 instalado!\033[0m."
-                #echo "NodeJs 18 instalado!"
-
-
-}
-
-_NodeJs2()
-{
-		sudo apt-get remove nodejs npm
-		sudo rm /usr/local/bin/node
-		sudo rm /usr/local/bin/npm
-		sudo rm -rf /etc/nodejs
-		sudo rm -rf ~/.npm
-		sudo rm -rf ~/.cache/node-gyp
-		nvm uninstall
-		#------------------------------------------
-                #Instalando NodeJs
-                clear
-                sudo curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-                sudo apt update
-                sudo apt install nodejs
-                sudo wget https://nodejs.org/dist/v18.12.1/node-v18.12.1-linux-x64.tar.gz
-                sudo tar -xf node-v18.12.1-linux-x64.tar.gz
-                sudo sudo mv node-v18.12.1-linux-x64/* /usr/local/bin
-                #------------------
-                #sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh 
-                ruta_script=$(readlink -f “$0”)
-                sudo wget -O  ruta_script  https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh
-                cd "$(dirname "$ruta_script")"
-                sudo chmod +u+x ruta_script
-                sudo ./ruta_script
-                #- - - - - - - - - -
-                nvm install 18.12.1
-                echo -e " \033[33mNodeJs 18 instalado!\033[0m."
-                #echo "NodeJs 18 instalado!"
-
-}
-
-_NodeJs3()
-{
 		sudo apt-get remove nodejs npm
 		sudo rm /usr/local/bin/node
 		sudo rm /usr/local/bin/npm
@@ -129,14 +64,11 @@ _NodeJs3()
 	export NVM_DIR="$HOME/.nvm" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 	nvm install 18.19.1
 	node -v
-	#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	- - - - - - - - - -
 	#Instalando Sequelize 7.0.0
 	sudo apt update
-	#sudo apt upgrade
-	#Opcional sudo apt install nodejs
-	#Sugerido como previo actualizar NPM 
 	npm install -g npm@10.5.0
-	#Instalando el sequelize CLI
 	npm install --global sequelize-cli
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	sudp apt update
@@ -144,6 +76,7 @@ _NodeJs3()
 	npm install --global sequelize@6.7.0
 	sudo chmod a+x /usr/local/bin/sequelize
 	sequelize --version
+	echo "\033[32mNode Js y Sequelize instalados\033[0m"
 }
 
 _Nginx()
@@ -153,7 +86,7 @@ _Nginx()
 		sudo apt  install nginx
 		sudo systemctl enable nginx
 		#sudo systemctl status nginx	
-		echo -e " \033[33mNginx instalado!\033[0m."
+		echo -e "\033[32mNginx instalado\033[0m"
 		#echo "Nginx instalado!"
 
 }
@@ -167,7 +100,7 @@ _Pm2()
 		#npm install pm2@latest -g
 		sudo npm install pm2 -g
 		#sudo chmod +x /usr/local/bin/pm2
-		echo -e " \033[33mPM2 instalado!\033[0m."
+		echo -e " \033[32mPM2 instalado!\033[0m."
 		#echo "PM2 instalado"
 }
 
@@ -184,7 +117,7 @@ _VisualCode()
 		#sudo snap install dbeaver-ce
 		sudo apt install expect
 		sudo apt install curl
-		echo -e " \033[33mVisual Code, DBeaver,  Brave Browser y Expect instalado!\033[0m."
+		echo -e " \033[32mVisual Code, Brave Browser y Expect instalado!\033[0m."
 
 	#echo "Visual Code, DBeaver y Brave Browser instalado!"
 }
@@ -198,170 +131,19 @@ _Git()
 		sudo chmod +x /usr/bin/git
 		git --version
 		echo 'export PATH=$PATH:/usr/bin/git' >> ~/.bashrc
-		echo -e " \033[33mGit instalado!\033[0m."
+		echo -e " \033[32mGit instalado!\033[0m."
 		#echo "GIT instalado!"
 
 }
 
-###########################################################################################################
-PostgreSQL()
-{
-	software="postgresql"
-
-	if apt -q list --installed "$software" >/dev/null; then
-	echo "El paquete $software ya está instalado."
-	else
-		#Instalando PostGreSQL 
-		#Fuente :https://www.cherryservers.com/blog/how-to-install-and-setup-postgresql-server-on-ubuntu-20-04
-		sudo apt update
-		echo "Instala PostGreSQL "
-		sudo apt -S install wget ca-certificates
-		wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-		sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
-		sudo apt update
-		apt -S install postgresql postgresql-contrib
-			clear
-		echo "PostGreSQL instalado!"
-		service postgresql status
-		sudo apt -S install postgresql-client
-		echo -e " \033[33mPostgreSQL 16 instalado!\033[0m."
-	fi
-	#Instalando PostGreSQL 10
-}
-
-MongoDB()
-{
-	software="mongodb-org"
-
-	if apt -q list --installed "$software" >/dev/null; then
-	echo "El paquete $software ya está instalado."
-	else
-		#Instalando MongoDB 
-		#Fuente: https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-from-the-default-apt-repositories-on-ubuntu-20-04
-
-			clear
-			echo "Instalando MongoDB"
-		#- - - - - - - - - - - - - - - - - - - -
-		sudo curl -fsSL https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
-		echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-		sudo apt update
-		sudo apt -S install mongodb-org
-		#- - - - - - - - - - - - - - - - - - - -
-		sudo systemctl start mongod.service
-		sudo systemctl enable mongod.service
-		#sudo systemctl status mongod.service	
-		sudo ufw allow 27017
-		echo -e " \033[33mMongoDB instalado!\033[0m."
-		#echo "MongoDb instalado!"
-	fi
-
-}
-
-NodeJs()
-{
-	software="nodejs"
-
-	if apt -q list --installed "$software" >/dev/null; then
-	echo "El paquete $software ya está instalado."
-	else
-		#Instalando NodeJs
-		clear
-		sudo curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-		sudo apt update
-		sudo apt -S install nodejs
-		sudo wget https://nodejs.org/dist/v18.12.1/node-v18.12.1-linux-x64.tar.gz
-		sudo tar -xf node-v18.12.1-linux-x64.tar.gz
-		sudo sudo mv node-v18.12.1-linux-x64/* /usr/local/bin
-		#------------------
-		ruta_script=$(readlink -f "$0")
-		sudo curl -O ruta_script https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh
-		cd ruta_script
-		sudo chmod +u+x  install.sh
-		sudo ./install.sh
-		#- - - - - - - - - -
-		nvm install 18.12.1
-		
-		echo -e " \033[33mNodeJs 18!\033[0m."
-		#echo "NodeJs 18 instalado!"
-	fi
-}
-
-Nginx()
-{
-	software="nginx"
-	if apt -q list --installed "$software" >/dev/null; then
-	echo "El paquete $software ya está instalado."
-	else
-		#Instalación de Ngix
-		sudo apt -S install nginx
-		sudo systemctl enable nginx
-		#sudo systemctl status nginx	
-		echo -e " \033[33mNginx instalado!\033[0m."
-		#echo "Nginx instalado!"
-	fi
-
-}
-
-Pm2()
-{
-	software="pm2"
-
-	if dpkg -l | grep -q "$software"; then
-		echo "El paquete $software ya está instalado."
-	else
-		echo "Instalando PM2"
-		sudo apt update
-		sudo apt -S install nodejs
-		sudo npm install pm2@latest -g
-		sudo chmod +x /usr/local/bin/pm2
-		echo -e " \033[33mPM2 instalado!\033[0m."
-		#echo "PM2 instalado"
-	fi
-
-}
-
-VisualCode()
-{
-	software="code"
-
-	if apt -q list --installed "$software" >/dev/null; then
-		echo "El paquete $software ya está instalado."
-	else
-		echo "Instalando Visual Code"
-		sudo apt update
-		sudo apt -S install apt-transport-https
-		wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-		sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-		sudo apt update
-		sudo apt -S install code
-		sudo snap -S install brave
-		sudo snap -S install dbeaver-ce
-		echo -e " \033[33mVisual Code, DBeaver y Brave Browser instalado!\033[0m."
-	fi
+#########################################################################################################
+####################### P A Q U E T E S    R E Q U E R I D O S ##########################################
+#########################################################################################################
 
 
-
-	#echo "Visual Code, DBeaver y Brave Browser instalado!"
-}
-
-Git()
-{
-	software="git"
-
-	if apt -q list --installed "$software" >/dev/null; then
-		echo "El paquete $software ya está instalado."
-	else
-		echo "Instalando GIT"
-		sudo apt update
-		sudo apt -S install git
-		sudo chmod +x /usr/bin/git
-		git --version
-		echo 'export PATH=$PATH:/usr/bin/git' >> ~/.bashrc
-		echo -e " \033[33mGit instalado!\033[0m."
-		#echo "GIT instalado!"
-	fi
-
-}
+#########################################################################################################
+####################### O P E R A C I O N E S  C O N F I G U R A C I O N E S ############################
+#########################################################################################################
 
 configuraPostgreSQL()
 {
@@ -378,6 +160,18 @@ configuraPostgreSQL()
 	fi
 }
 
+configuraPostgreSQLAuto()
+{
+	echo "Configurando el archivo 'pg_hda.conf' PostgreSQL"
+	cd /etc/postgresql/16/main/
+		chmod -R 777 pg_hba.conf
+		sudo perl -pi -e "s[local   all             all                                     peer][local   all             all                                     trust]g" pg_hba.conf
+		sudo perl -pi -e "s[host    all             all             127.0.0.1/32            scram-sha-256][host    all             all             127.0.0.1/32            trust]g" pg_hba.conf
+		sudo perl -pi -e "s[host    replication     all             127.0.0.1/32            scram-sha-256][host    replication     all             127.0.0.1/32            ident]g" pg_hba.conf
+		sudo perl -pi -e "s[host    replication     all             ::1/128                 scram-sha-256][host    replication     all             ::1/128                 ident]g" pg_hba.conf
+		echo -e " \033[33mArchivo pg_hba.conf ha sido configurado!\033[0m."
+}
+
 reestablecePasswordPostgreSQL()
 {
 	echo "Desea reestablecer el password de PostgreSQL [S/N]:"
@@ -388,6 +182,12 @@ reestablecePasswordPostgreSQL()
 			#Estableciendo el nuevo password para controlar PostgreSQL
 			sudo passwd postgres
 	fi
+}
+
+reestablecePasswordPostgreSQLAuto()
+{
+	echo "Establezca el nuevo password de PostgreSQL."
+	sudo passwd postgres
 }
 
 CreacionBaseDatos()
@@ -423,346 +223,12 @@ CreacionBaseDatos()
 	echo "Base de datos creada y propietarios de los esquema prueba-captura y prueba_dashboard creados"
 }
 
-
-prerrequisitosInstalacion()
-{
-		_software="curl"
-		if apt -q list --installed "$_software" >/dev/null; then
-			echo "El paquete $_software ya está instalado."
-		else
-			sudo apt install curl	
-		fi
-
-		echo "Desea instalar Todos los prerequisitos (T) o uno por uno (U) [T/t/U/u]:"
-		read respuestaTodosUnoxUno
-		# Validar respuesta de instalación de todo el software de una vez o parte por parte
-		if [[ "$respuestaTodosUnoxUno" =~ ^(U|u)$ ]]; then
-					echo -e "\033[31m#####################################################################\033[0m"
-					echo -e "\033[31m########## INSTALACIÓN 1 x 1 SOFTWARE REQUERIDO INSTALADO ###########\033[0m"
-					echo -e "\033[31m#####################################################################\033[0m"		
-					echo "Desea instalar Visual Code [S/N]:"
-					read respuestaVisualCode
-					# Validar respuesta de instalación de Visual Code
-					if [[ "$respuestaVisualCode" =~ ^(Si|S|s)$ ]]; then
-								echo "Se procede a instalar Visual Code"
-								VisualCode
-					fi
-					#----------------------------------------------------------------
-					echo "Desea instalar PostgreSQL [S/N]:"
-					read respuestaPostgreSQL
-					# Validar respuesta de instalación del PostgreSQL
-					if [[ "$respuestaPostgreSQL" =~ ^(Si|S|s)$ ]]; then
-						echo "Se procede a instalar PostgreSQL"
-						PostgreSQL
-					fi
-					#----------------------------------------------------------------
-					echo "Desea instalar MongoDB [S/N]:"
-					read respuestaMongoDB
-					# Validar respuesta de instalación de MongoDB
-					if [[ "$respuestaMongoDB" =~ ^(Si|S|s)$ ]]; then
-							echo "Se procede a instalar MongoDB"
-							MongoDB
-					fi
-					#----------------------------------------------------------------
-					echo "Desea instalar NodeJs [S/N]:"
-					read respuestaNodeJs
-					# Validar respuesta de instalación de NodeJs
-					if [[ "$respuestaNodeJs" =~ ^(Si|S|s)$ ]]; then
-							echo "Se procede a instalar NodeJs"
-							NodeJs
-					fi
-					#----------------------------------------------------------------
-					echo "Desea instalar NGINX [S/N]:"
-					read respuestaNginx
-					# Validar respuesta de instalación de Nginx
-					if [[ "$respuestaNginx" =~ ^(Si|S|s)$ ]]; then
-							echo "Se procede a instalar Nginx"
-							Nginx
-					fi
-					#----------------------------------------------------------------
-					echo "Desea instalar PM2 [S/N]:"
-					read respuestaPm2
-					# Validar respuesta de instalación de PM2
-					if [[ "$respuestaPm2" =~ ^(Si|S|s)$ ]]; then
-							echo "Se procede a instalar PM2"
-							Pm2
-					fi
-					#----------------------------------------------------------------
-					echo "Desea instalar GIT [S/N]:"
-					read respuestaGit
-					# Validar respuesta de instalación de GIT
-					if [[ "$respuestaGit" =~ ^(Si|S|s)$ ]]; then
-							echo "Se procede a instalar GIT"
-							Git
-					fi
-		else 
-					if [[ "$respuestaTodosUnoxUno" =~ ^(T|t)$ ]]; then
-						echo -e "\033[31m#####################################################################\033[0m"
-						echo -e "\033[31m###### INSTALACIÓN DE TODO EL SOFTWARE REQUERIDO INSTALADO ##########\033[0m"
-						echo -e "\033[31m#####################################################################\033[0m"					
-						echo "Se procede a instalar todo el software necesario"
-						echo -e "\e[33mIniciando Visual Code.\e[0m"
-						_VisualCode
-						echo -e "\e[33mPaso Visual Code terminado.\e[0m"
-						echo -e "\e[33mIniciando PostgreSQL.\e[0m"
-						_PostgreSQL
-						echo -e "\e[33mPaso PostgreSQL terminado.\e[0m"
-						echo -e "\e[33mIniciando Mongo DB\e[0m"
-						_MongoDB
-						echo -e "\e[33mPaso Mongo DB terminado.\e[0m"
-						echo -e "\e[33mIniciando NodeJs\e[0m"
-						_NodeJs3
-						echo -e "\e[33mPaso NodeJs terminado.\e[0m"
-						echo -e "\e[33mIniciando Nginx\e[0m"
-						_Nginx
-						echo -e "\e[33mPaso Nginx terminado.\e[0m"
-						echo -e "\e[33mIniciando Pm2\e[0m"
-						_Pm2 
-						echo -e "\e[33mPaso Pm2 terminado.\e[0m"
-						echo -e "\e[33mIniciando Git\e[0m"
-						_Git
-						echo -e "\e[33mPaso Git terminado.\e[0m"
-					else
-						echo "La selección tecleada no es válida"
-						exit
-					fi
-		fi
-
-		clear
-
-		echo -e "\033[31m#####################################################################\033[0m"
-		echo -e "\033[31m############ SOFTWARE REQUERIDO INSTALADO ###########################\033[0m"
-		echo -e "\033[31m#####################################################################\033[0m"
-		#Comprobación de las versiones instaladas - - - - - - - - - -
-		echo -e "\033[31mVersión de PostGreSQL:\033[0m"
-		psql --version
-		echo "------------------------------------------------------"
-		echo -e "\033[31mVersión de NodeJs:\033[0m"
-		node -v
-		echo "------------------------------------------------------"
-		echo -e "\033[31mVersión de MongoDB:\033[0m"
-		mongo --version
-		echo "------------------------------------------------------"
-		echo -e "\033[31mVersion de Nginx:\033[0m"
-		nginx -v
-		echo "------------------------------------------------------"
-		echo -e "\033[31mVersion de PM2:\033[0m"
-		pm2 -v
-		echo "------------------------------------------------------"
-		echo -e "\033[31mVersion de GIT:\033[0m"
-		git --version
-		#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-}
-
-
 configuracionVariablesConexionBD()
 {
 	cd captura
 	cd config
 	#chmod -R 777 appsettings.json
 
-}
-
-seleccionaOpcionMenu()
-{
-	recuperaArchivoCredenciales
-	uC=$usuarioCaptura
-	uD=$usuarioDashboard
-	psw=$password
-	respuestaUsuarioCaptura=$uC
-	respuestaUsuarioDashboard=$uD
-	respuestaPassword=$psw
-
-	#Determina si hay valores almacenados previamente
-	if [[ -z "$uC" ]]; then
-		echo "Proporcione la siguiente información para configurar varios archivos del sistema."
-		echo "##########################################################################"
-		echo "Desea establecer los nuevos valores de los esquemas de captura, dashboard y password [S/N]:"
-			read respuestaUsuariosyPassword
-		if [[ "$respuestaUsuariosyPassword" =~ ^(Si|S|s)$ ]]; then
-			echo "Usuario de configuración para prueba_captura en la Plataforma de Compras Abiertas:"
-				read _respuestaUsuarioCaptura
-			echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - O"
-			echo "Usuario de configuración para prueba_dashboard en la Plataforma de Compras Abiertas:"
-				read _respuestaUsuarioDashboard	
-			echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - O"
-			echo "Password de configuración de la Plataforma de Compras Abiertas:"
-				read _respuestaPassword	
-			echo "- - - - - - - - - - - - - - - - - - O"
-			creaArchivoCredenciales "$_respuestaUsuarioCaptura" "$_respuestaUsuarioDashboard" "$_respuestaPassword"
-		else
-			respuestaUsuarioCaptura = "prueba_captura"
-			respuestaUsuarioDashboard = "prueba_dashboard"
-			respuestaPassword = "p4ssw0rd"
-		fi
-	else
-		echo "Ya hay valores previos definidos para los esquemas de prueba_captura, prueba_dashboard y password"
-		respuestaUsuarioCaptura=$uC
-		respuestaUsuarioDashboard=$uD
-		respuestaPassword=$psw
-	fi
-	    echo "Valores con los cuales se van a hacer las configuraciones: "
-		echo "1) respuestaUsuarioCaptura  : ${respuestaUsuarioCaptura}"
-		echo "2) respuestaUsuarioDashboard: ${respuestaUsuarioDashboard}"
-		echo "3) respuestaPassword        : ${respuestaPassword}"	
-
-
-	# array de opciones
-	echo "- - - - - - M E N U - - - - -"
-	opciones=(
-			"Configuración del archivo 'pg_hba.conf'"
-			"Creación de la base de datos EDCA"
-			"Descargar el archivo del código del INAI"
-			"Configuración de variables de conexión a la base de datos"
-			"Creación de la base de datos edca y del esquema publica"
-			"Configuración del usuario propietario para el esquema public"
-			"Creación del esquema dashboard"
-			"Configuración del usuario propietario para el esquema dashboard"
-			"Validación de conexión a base de datos"
-			"Asignación de variables MAPTOKEN"
-			"Instalación de Object Relational Mapping del módulo de Infraestructura"
-			"Crear vistas del módulo Infraestructura Abierta"
-			"Crear usuario del aplicativo"
-			"Iniciar los servicios de los módulos"
-			"Lanza la plataforma de captura de ComprasAbiertas del INAI"
-			"Ejecutar del paso 1-15"
-			"Salir"
-		)
-
-	while true; do
-		# Bucle para mostrar el menú y ejecutar la acción seleccionada
-		for (( i=0; i<${#opciones[@]}; i++ )); do
-			echo "$((i + 1)). ${opciones[$i]}"
-		done
-
-		echo -n "Seleccione una opción: "
-		read opcionMenu
-
-		# Validar la opción del usuario
-		if [[ $opcionMenu =~ ^[1-9]|10$|11$|12$|13$|14$|15$|16$|17$ ]]; then
-			echo "Seleccionó la opción $opcionMenu."
-			# Aquí puedes agregar el código para la opción seleccionada
-			case $opcionMenu in
-				1)
-					# ...
-					configuraPostgreSQL
-					reestablecePasswordPostgreSQL
-					echo -e "\e[33mPaso 1 terminado.\e[0m"
-					;;
-				2)
-					# ...
-					paso2 "$respuestaUsuarioCaptura"  "$respuestaUsuarioDashboard"	"$respuestaPassword"
-					echo -e "\e[33mPaso 2 terminado.\e[0m"
-					;;
-				3)
-					# ...
-					paso3
-					echo -e "\e[33mPaso 3 terminado.\e[0m"
-					;;
-				4)
-					# ...
-					paso4 "$respuestaUsuarioCaptura"  "$respuestaPassword"
-					echo -e "\e[33mPaso 4 terminado.\e[0m"
-					;;
-				5)
-					# ...
-					paso5 "$respuestaUsuarioCaptura"  "$respuestaPassword"
-					echo -e "\e[33mPaso 5 terminado.\e[0m"
-					;;
-				6)
-					# ...
-					paso6 "$respuestaUsuarioDashboard"
-					echo -e "\e[33mPaso 6 terminado.\e[0m"
-					;;
-				7)
-					# ...
-					paso7 "$respuestaUsuarioDashboard"
-					echo -e "\e[33mPaso 7 terminado.\e[0m"
-					;;
-				8)
-					# ...
-					paso8 "$respuestaUsuarioDashboard"
-					echo -e "\e[33mPaso 8 terminado.\e[0m"
-					;;
-				9)
-					# ...
-					paso9
-					echo -e "\e[33mPaso 9 terminado.\e[0m"
-					;;
-				10)
-					# ...
-					paso10
-					echo -e "\e[33mPaso 10 terminado.\e[0m"
-					;;
-				11)
-					# ...
-					paso11
-					echo -e "\e[33mPaso 11 terminado.\e[0m"
-					;;	
-				12)
-					# ...
-					paso12
-					echo -e "\e[33mPaso 12 terminado.\e[0m"
-					;;
-				13)
-					# ...
-					paso13
-					echo -e "\e[33mPaso 13 terminado.\e[0m"
-					;;
-				14)
-					# ...
-					paso14
-					echo -e "\e[33mPaso 14 terminado.\e[0m"
-					;;	
-				15)
-					paso15
-					echo -e "\e[33mPaso 15 terminado.\e[0m"
-					;;
-				16)
-					# ...
-					configuraPostgreSQL
-					reestablecePasswordPostgreSQL
-					echo -e "\e[33mPaso 1 terminado.\e[0m"
-					paso2 "$respuestaUsuarioCaptura"  "$respuestaUsuarioDashboard"	"$respuestaPassword"
-					echo -e "\e[33mPaso 2 terminado.\e[0m"
-					paso3
-					echo -e "\e[33mPaso 3 terminado.\e[0m"
-					paso4 "$respuestaUsuarioCaptura"  "$respuestaPassword"
-					echo -e "\e[33mPaso 4 terminado.\e[0m"
-					paso5 "$respuestaUsuarioCaptura"  "$respuestaPassword"
-					echo -e "\e[33mPaso 5 terminado.\e[0m"
-					paso6 "$respuestaUsuarioDashboard"
-					echo -e "\e[33mPaso 6 terminado.\e[0m"
-					paso7 "$respuestaUsuarioDashboard"
-					echo -e "\e[33mPaso 7 terminado.\e[0m"
-					paso8 "$respuestaUsuarioDashboard"
-					echo -e "\e[33mPaso 8 terminado.\e[0m"
-					paso9
-					echo -e "\e[33mPaso 9 terminado.\e[0m"
-					paso10
-					echo -e "\e[33mPaso 10 terminado.\e[0m"	
-					paso11
-					echo -e "\e[33mPaso 11 terminado.\e[0m"	
-					paso12
-					echo -e "\e[33mPaso 12 terminado.\e[0m"	
-					paso13
-					echo -e "\e[33mPaso 13 terminado.\e[0m"	
-					paso14
-					echo -e "\e[33mPaso 14 terminado.\e[0m"	
-					paso15
-					echo -e "\e[33mPaso 15 terminado.\e[0m"																
-					echo -e "\e[33mPasos 1-15 terminados.\e[0m"
-					;;																												
-			esac
-		elif [[ $opcionMenu =~ ^[18]$ ]]; then
-			echo "Saliendo del menú."
-			break
-		else
-			echo "Opción no válida."
-			break
-		fi
-	done
 }
 
 creaArchivoCredenciales()
@@ -774,6 +240,28 @@ creaArchivoCredenciales()
 	usuarioCaptura="$1"
 	usuarioDashboard="$2"
 	password="$3"
+
+	sudo rm - r ruta_script
+
+	# Creamos el archivo en la misma ubicación que el script
+	archivo_texto="${ruta_script%.*}.txt"
+	echo "$usuarioCaptura" > "$archivo_texto"
+	echo "$usuarioDashboard" >> "$archivo_texto"
+	echo "$password" >> "$archivo_texto"
+
+	echo "Archivo creado con las credenciales: $archivo_texto"
+
+}
+
+creaArchivoCredencialesAuto()
+{
+	# Obtenemos la ruta del script
+	ruta_script=$(readlink -f "$0")
+
+	# Definimos las 3 cadenas de texto
+	usuarioCaptura="pde_captura"
+	usuarioDashboard="pde_dashboard"
+	password="C0ntras3ña"
 
 	sudo rm - r ruta_script
 
@@ -826,6 +314,31 @@ recuperaArchivoCredenciales()
 	export password
 }
 
+descargaArchivosFuenteINAI()
+{
+	cd /var
+	sudo mkdir www
+	sudo chmod 777 www
+	cd www	
+	sudo mkdir html
+	sudo chmod 777 html
+	cd html
+	sudo mkdir contratacionesabiertas
+	sudo chmod 777 contratacionesabiertas
+	cd contratacionesabiertas
+	sudo git clone https://github.com/datosabiertosmx/contrataciones-abiertas-infraestructura
+	cd contrataciones-abiertas-infraestructura/contratacionesabiertas/
+	sudo mv -v captura dashboard /var/www/html/contratacionesabiertas
+	cd ../..
+	sudo rm -rf contrataciones-abiertas-infraestructura/
+	cd /var/www/html/contratacionesabiertas
+
+	sudo chmod 777 captura
+	sudo chmod 777 .
+	sudo chmod 777 dashboard
+	sudo chmod 777 .	
+}
+
 paso2()
 {
 	echo -e "\033[31m#####################################################################\033[0m"
@@ -841,6 +354,19 @@ paso2()
             echo "Iniciando tareas de creación de la base de datos EDCA"
             CreacionBaseDatos "$respuestaUsuarioCaptura"  "$respuestaUsuarioDashboard"	"$respuestaPassword"
     fi
+}
+
+paso2Auto()
+{
+	echo -e "\033[31m#####################################################################\033[0m"
+	echo -e "\033[31m############ CREANDO LA BASE DE DATOS EDCA ##########################\033[0m"
+	echo -e "\033[31m#####################################################################\033[0m"
+	rUC=$1 
+	rUD=$2	
+	psw=$3
+    echo "Iniciando tareas de creación de la base de datos EDCA"
+    CreacionBaseDatos "$respuestaUsuarioCaptura"  "$respuestaUsuarioDashboard"	"$respuestaPassword"
+	#Crea las credenciales necesarias para actualizar los esquemas necesarios de PostgreSQL 
 }
 
 paso3()
@@ -860,31 +386,13 @@ paso3()
 
 }
 
-descargaArchivosFuenteINAI()
+paso3Auto()
 {
-	#sudo mkdir /var/www/html/contratacionesabiertas
-	cd /var
-	sudo mkdir www
-	sudo chmod 777 www
-	cd www	
-	sudo mkdir html
-	sudo chmod 777 html
-	cd html
-	sudo mkdir contratacionesabiertas
-	sudo chmod 777 contratacionesabiertas
-	#cd /var/www/html/contratacionesabiertas
-	cd contratacionesabiertas
-	sudo git clone https://github.com/datosabiertosmx/contrataciones-abiertas-infraestructura
-	cd contrataciones-abiertas-infraestructura/contratacionesabiertas/
-	sudo mv -v captura dashboard /var/www/html/contratacionesabiertas
-	cd ../..
-	sudo rm -rf contrataciones-abiertas-infraestructura/
-	cd /var/www/html/contratacionesabiertas
-
-	sudo chmod 777 captura
-	sudo chmod 777 .
-	sudo chmod 777 dashboard
-	sudo chmod 777 .	
+	echo -e "\033[31m#####################################################################\033[0m"
+	echo -e "\033[31m############ DESCARGA DE ARCHIVOS FUENTE ############################\033[0m"
+	echo -e "\033[31m#####################################################################\033[0m"
+    echo "Iniciando tareas de descarga del proyecto de Compras Abiertas del INAI"
+	descargaArchivosFuenteINAI
 }
 
 paso4()
@@ -1117,11 +625,6 @@ paso10()
 
 paso11()
 {
-			#npm install -g npm-force-update
-	#sudo apt-get remove --auto-remove
-	#sudo apt update
-			#sudo apt install --reinstall nodejs
-			#sudo apt clean
 	cd /
 	sudo apt install npm
 	#Instalación de Object Relational Mapping del módulo de Infraestructura
@@ -1165,7 +668,6 @@ paso12()
 	expect update_InfraestructuraAbiertav1.exp
     echo "Archivo captura - sql - update_InfraestructuraAbiertav1.sql configurado y ejecutado"
 }
-
 
 paso13()
 {
@@ -1224,30 +726,427 @@ administradorBD_PostgreSQL()
 	
 }
 
+#########################################################################################################
+####################### O P E R A C I O N E S  C O N F I G U R A C I O N E S ############################
+#########################################################################################################
+
+
+#########################################################################################################
+####################### O P E R A C I O N E S   D E   A D M I N I S T R A C I O N #######################
+#########################################################################################################
+
+prerrequisitosInstalacion()
+{
+		_software="curl"
+		if apt -q list --installed "$_software" >/dev/null; then
+			echo "El paquete $_software ya está instalado."
+		else
+			sudo apt install curl	
+		fi
+		echo "\033[33m¿Desea instalar Todos los prerequisitos (T/t) o uno por uno (U/u)?\033[0m"
+		read respuestaTodosUnoxUno
+		# Validar respuesta de instalación de todo el software de una vez o parte por parte
+		if [[ "$respuestaTodosUnoxUno" =~ ^(U|u)$ ]]; then
+					echo "\033[37mDesea instalar Visual Code [S/N]:\033[0m"
+					read respuestaVisualCode
+					# Validar respuesta de instalación de Visual Code
+					if [[ "$respuestaVisualCode" =~ ^(Si|S|s)$ ]]; then
+								_VisualCode
+					fi
+					#----------------------------------------------------------------
+					echo "\033[37mDesea instalar PostgreSQL [S/N]:\033[0m"
+					read respuestaPostgreSQL
+					# Validar respuesta de instalación del PostgreSQL
+					if [[ "$respuestaPostgreSQL" =~ ^(Si|S|s)$ ]]; then
+						_PostgreSQL
+					fi
+					#----------------------------------------------------------------
+					echo "\033[37mDesea instalar MongoDB [S/N]:\033[0m"
+					read respuestaMongoDB
+					# Validar respuesta de instalación de MongoDB
+					if [[ "$respuestaMongoDB" =~ ^(Si|S|s)$ ]]; then
+							_MongoDB
+					fi
+					#----------------------------------------------------------------
+					echo "\033[37mDesea instalar NodeJs [S/N]:\033[0m"
+					read respuestaNodeJs
+					# Validar respuesta de instalación de NodeJs
+					if [[ "$respuestaNodeJs" =~ ^(Si|S|s)$ ]]; then
+							_NodeJs
+					fi
+					#----------------------------------------------------------------
+					echo "\033[37mDesea instalar NGINX [S/N]:\033[0m"
+					read respuestaNginx
+					# Validar respuesta de instalación de Nginx
+					if [[ "$respuestaNginx" =~ ^(Si|S|s)$ ]]; then
+							_Nginx
+					fi
+					#----------------------------------------------------------------
+					echo "\033[37mDesea instalar PM2 [S/N]:\033[0m"
+					read respuestaPm2
+					# Validar respuesta de instalación de PM2
+					if [[ "$respuestaPm2" =~ ^(Si|S|s)$ ]]; then
+							_Pm2
+					fi
+					#----------------------------------------------------------------
+					echo "\033[37mDesea instalar GIT [S/N]:\033[0m"
+					read respuestaGit
+					# Validar respuesta de instalación de GIT
+					if [[ "$respuestaGit" =~ ^(Si|S|s)$ ]]; then
+							_Git
+					fi
+		else 
+					if [[ "$respuestaTodosUnoxUno" =~ ^(T|t)$ ]]; then
+						echo "\033[44mSe procede a instalar todo el software necesario\033[0m"
+						echo -e "\e[33mIniciando Visual Code.\e[0m"
+						_VisualCode
+						echo -e "\e[33mPaso Visual Code terminado.\e[0m"
+						echo -e "\e[33mIniciando PostgreSQL.\e[0m"
+						_PostgreSQL
+						echo -e "\e[33mPaso PostgreSQL terminado.\e[0m"
+						echo -e "\e[33mIniciando Mongo DB\e[0m"
+						_MongoDB
+						echo -e "\e[33mPaso Mongo DB terminado.\e[0m"
+						echo -e "\e[33mIniciando NodeJs\e[0m"
+						_NodeJs
+						echo -e "\e[33mPaso NodeJs terminado.\e[0m"
+						echo -e "\e[33mIniciando Nginx\e[0m"
+						_Nginx
+						echo -e "\e[33mPaso Nginx terminado.\e[0m"
+						echo -e "\e[33mIniciando Pm2\e[0m"
+						_Pm2 
+						echo -e "\e[33mPaso Pm2 terminado.\e[0m"
+						echo -e "\e[33mIniciando Git\e[0m"
+						_Git
+						echo -e "\e[33mPaso Git terminado.\e[0m"
+					else
+						echo "La selección tecleada no es válida"
+						exit
+					fi
+		fi
+
+		clear
+
+		echo -e "\033[32m#####################################################################\033[0m"
+		echo -e "\033[32m############ SOFTWARE REQUERIDO INSTALADO ###########################\033[0m"
+		echo -e "\033[32m#####################################################################\033[0m"
+		#Comprobación de las versiones instaladas - - - - - - - - - -
+		echo -e "\033[31mVersión de PostGreSQL:\033[0m"
+		psql --version
+		echo "------------------------------------------------------"
+		echo -e "\033[31mVersión de NodeJs:\033[0m"
+		node -v
+		echo "------------------------------------------------------"
+		echo -e "\033[31mVersión de MongoDB:\033[0m"
+		mongo --version
+		echo "------------------------------------------------------"
+		echo -e "\033[31mVersion de Nginx:\033[0m"
+		nginx -v
+		echo "------------------------------------------------------"
+		echo -e "\033[31mVersion de PM2:\033[0m"
+		pm2 -v
+		echo "------------------------------------------------------"
+		echo -e "\033[31mVersion de GIT:\033[0m"
+		git --version
+		#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		sleep 5
+
+}
+
+seleccionaOpcionMenu()
+{
+	recuperaArchivoCredenciales
+	uC=$usuarioCaptura
+	uD=$usuarioDashboard
+	psw=$password
+	respuestaUsuarioCaptura=$uC
+	respuestaUsuarioDashboard=$uD
+	respuestaPassword=$psw
+
+	#Determina si hay valores almacenados previamente
+	if [[ -z "$uC" ]]; then
+		echo "Proporcione la siguiente información para configurar varios archivos del sistema."
+		echo "##########################################################################"
+		echo "Desea establecer los nuevos valores de los esquemas de captura, dashboard y password [S/N]:"
+			read respuestaUsuariosyPassword
+		if [[ "$respuestaUsuariosyPassword" =~ ^(Si|S|s)$ ]]; then
+			echo "Usuario de configuración para prueba_captura en la Plataforma de Compras Abiertas:"
+				read _respuestaUsuarioCaptura
+			echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - O"
+			echo "Usuario de configuración para prueba_dashboard en la Plataforma de Compras Abiertas:"
+				read _respuestaUsuarioDashboard	
+			echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - O"
+			echo "Password de configuración de la Plataforma de Compras Abiertas:"
+				read _respuestaPassword	
+			echo "- - - - - - - - - - - - - - - - - - O"
+			creaArchivoCredenciales "$_respuestaUsuarioCaptura" "$_respuestaUsuarioDashboard" "$_respuestaPassword"
+		else
+			respuestaUsuarioCaptura = "prueba_captura"
+			respuestaUsuarioDashboard = "prueba_dashboard"
+			respuestaPassword = "p4ssw0rd"
+		fi
+	else
+		echo "Ya hay valores previos definidos para los esquemas de prueba_captura, prueba_dashboard y password"
+		respuestaUsuarioCaptura=$uC
+		respuestaUsuarioDashboard=$uD
+		respuestaPassword=$psw
+	fi
+	    echo "Valores con los cuales se van a hacer las configuraciones: "
+		echo "1) respuestaUsuarioCaptura  : ${respuestaUsuarioCaptura}"
+		echo "2) respuestaUsuarioDashboard: ${respuestaUsuarioDashboard}"
+		echo "3) respuestaPassword        : ${respuestaPassword}"	
+
+
+	# array de opciones
+	echo "- - - - - - M E N U - - - - -"
+	opciones=(
+			"Configuración del archivo 'pg_hba.conf'"
+			"Creación de la base de datos EDCA"
+			"Descargar el archivo del código del INAI"
+			"Configuración de variables de conexión a la base de datos"
+			"Creación de la base de datos edca y del esquema publica"
+			"Configuración del usuario propietario para el esquema public"
+			"Creación del esquema dashboard"
+			"Configuración del usuario propietario para el esquema dashboard"
+			"Validación de conexión a base de datos"
+			"Asignación de variables MAPTOKEN"
+			"Instalación de Object Relational Mapping del módulo de Infraestructura"
+			"Crear vistas del módulo Infraestructura Abierta"
+			"Crear usuario del aplicativo"
+			"Iniciar los servicios de los módulos"
+			"Lanza la plataforma de captura de ComprasAbiertas del INAI"
+			"Ejecutar del paso 1-15"
+			"Salir"
+		)
+
+	while true; do
+		# Bucle para mostrar el menú y ejecutar la acción seleccionada
+		for (( i=0; i<${#opciones[@]}; i++ )); do
+			echo "$((i + 1)). ${opciones[$i]}"
+		done
+
+		echo -n "Seleccione una opción: "
+		read opcionMenu
+
+		# Validar la opción del usuario
+		if [[ $opcionMenu =~ ^[1-9]|10$|11$|12$|13$|14$|15$|16$|17$ ]]; then
+			echo "Seleccionó la opción $opcionMenu."
+			# Aquí puedes agregar el código para la opción seleccionada
+			case $opcionMenu in
+				1)
+					# ...
+					configuraPostgreSQL
+					reestablecePasswordPostgreSQL
+					echo -e "\e[33mPaso 1 terminado.\e[0m"
+					;;
+				2)
+					# ...
+					paso2 "$respuestaUsuarioCaptura"  "$respuestaUsuarioDashboard"	"$respuestaPassword"
+					echo -e "\e[33mPaso 2 terminado.\e[0m"
+					;;
+				3)
+					# ...
+					paso3
+					echo -e "\e[33mPaso 3 terminado.\e[0m"
+					;;
+				4)
+					# ...
+					paso4 "$respuestaUsuarioCaptura"  "$respuestaPassword"
+					echo -e "\e[33mPaso 4 terminado.\e[0m"
+					;;
+				5)
+					# ...
+					paso5 "$respuestaUsuarioCaptura"  "$respuestaPassword"
+					echo -e "\e[33mPaso 5 terminado.\e[0m"
+					;;
+				6)
+					# ...
+					paso6 "$respuestaUsuarioDashboard"
+					echo -e "\e[33mPaso 6 terminado.\e[0m"
+					;;
+				7)
+					# ...
+					paso7 "$respuestaUsuarioDashboard"
+					echo -e "\e[33mPaso 7 terminado.\e[0m"
+					;;
+				8)
+					# ...
+					paso8 "$respuestaUsuarioDashboard"
+					echo -e "\e[33mPaso 8 terminado.\e[0m"
+					;;
+				9)
+					# ...
+					paso9
+					echo -e "\e[33mPaso 9 terminado.\e[0m"
+					;;
+				10)
+					# ...
+					paso10
+					echo -e "\e[33mPaso 10 terminado.\e[0m"
+					;;
+				11)
+					# ...
+					paso11
+					echo -e "\e[33mPaso 11 terminado.\e[0m"
+					;;	
+				12)
+					# ...
+					paso12
+					echo -e "\e[33mPaso 12 terminado.\e[0m"
+					;;
+				13)
+					# ...
+					paso13
+					echo -e "\e[33mPaso 13 terminado.\e[0m"
+					;;
+				14)
+					# ...
+					paso14
+					echo -e "\e[33mPaso 14 terminado.\e[0m"
+					;;	
+				15)
+					paso15
+					echo -e "\e[33mPaso 15 terminado.\e[0m"
+					;;
+				16)
+					# ...
+					configuraPostgreSQL
+					reestablecePasswordPostgreSQL
+					echo -e "\e[33mPaso 1 terminado.\e[0m"
+					paso2 "$respuestaUsuarioCaptura"  "$respuestaUsuarioDashboard"	"$respuestaPassword"
+					echo -e "\e[33mPaso 2 terminado.\e[0m"
+					paso3
+					echo -e "\e[33mPaso 3 terminado.\e[0m"
+					paso4 "$respuestaUsuarioCaptura"  "$respuestaPassword"
+					echo -e "\e[33mPaso 4 terminado.\e[0m"
+					paso5 "$respuestaUsuarioCaptura"  "$respuestaPassword"
+					echo -e "\e[33mPaso 5 terminado.\e[0m"
+					paso6 "$respuestaUsuarioDashboard"
+					echo -e "\e[33mPaso 6 terminado.\e[0m"
+					paso7 "$respuestaUsuarioDashboard"
+					echo -e "\e[33mPaso 7 terminado.\e[0m"
+					paso8 "$respuestaUsuarioDashboard"
+					echo -e "\e[33mPaso 8 terminado.\e[0m"
+					paso9
+					echo -e "\e[33mPaso 9 terminado.\e[0m"
+					paso10
+					echo -e "\e[33mPaso 10 terminado.\e[0m"	
+					paso11
+					echo -e "\e[33mPaso 11 terminado.\e[0m"	
+					paso12
+					echo -e "\e[33mPaso 12 terminado.\e[0m"	
+					paso13
+					echo -e "\e[33mPaso 13 terminado.\e[0m"	
+					paso14
+					echo -e "\e[33mPaso 14 terminado.\e[0m"	
+					paso15
+					echo -e "\e[33mPaso 15 terminado.\e[0m"																
+					echo -e "\e[33mPasos 1-15 terminados.\e[0m"
+					;;																												
+			esac
+		elif [[ $opcionMenu =~ ^[18]$ ]]; then
+			echo "Saliendo del menú."
+			break
+		else
+			echo "Opción no válida."
+			break
+		fi
+	done
+}
+
+#########################################################################################################
+####################### O P E R A C I O N E S   D E   A D M I N I S T R A C I O N #######################
+#########################################################################################################
+
 
 Principal()
 {
 	clear
 	echo -e "\033[31m#####################################################################\033[0m"
-	echo -e "\033[32m########### CONFIGURANDO SOFTWARE DE LA PLATAFORMA ##################\033[0m"
+	echo -e "\033[32m## SECRETARÍA EJECUTIVA DEL SISTEMA ESTATAL ANTICORRUPCIÓN PUEBLA ###\033[0m"
 	echo -e "\033[31m#####################################################################\033[0m"
-	echo "Desea instalar el software necesario para trabajar las Compras Abiertas [S/N]:"
-	read respuestaPrerequisitos
-	if [[ "$respuestaPrerequisitos" =~ ^(Si|S|s)$ ]]; then
-		echo "Se procede a instalar prerequisitos"
-		prerrequisitosInstalacion
+
+	echo "\033[33m¿Que tipo de instalación desea?    -Automática (A/a)    -Paso a Paso (P/p)\033[0m"
+	read respuestaTipoInstalacion
+	if [[ "$respuestaTipoInstalacion" =~ ^(P|p)$ ]]; then
+
+			echo "\033[33m¿Instalar los paquetes/software necesarios para ejecutar la plataforma [S/N]?\033[0m"
+			read respuestaPrerequisitos
+			if [[ "$respuestaPrerequisitos" =~ ^(Si|S|s)$ ]]; then
+				echo "Se procede a instalar prerequisitos"
+				prerrequisitosInstalacion
+			fi
+
+			echo "\033[33m¿Configurar y desplegar la Plataforma de Compras Abiertas del INAI [S/N]? \033[0m"
+			echo "Desea iniciar la configuración y despliegue de la Plataforma de Compras Abiertas [S/N]:"
+					read respuestaConfigurarDesplegarCA
+			if [[ "$respuestaConfigurarDesplegarCA" =~ ^(Si|S|s)$ ]]; then
+					#echo "Iniciando la configuración y despliegue de la Plataforma de Compras Abiertas"
+					seleccionaOpcionMenu
+			fi	
+	else
+			echo "\033[44mSe procede a instalar todo el software necesario\033[0m"
+			echo -e "\e[33mIniciando Visual Code.\e[0m"
+			_VisualCode
+			echo -e "\e[33mPaso Visual Code terminado.\e[0m"
+			echo -e "\e[33mIniciando PostgreSQL.\e[0m"
+			_PostgreSQL
+			echo -e "\e[33mPaso PostgreSQL terminado.\e[0m"
+			echo -e "\e[33mIniciando Mongo DB\e[0m"
+			_MongoDB
+			echo -e "\e[33mPaso Mongo DB terminado.\e[0m"
+			echo -e "\e[33mIniciando NodeJs\e[0m"
+			_NodeJs
+			echo -e "\e[33mPaso NodeJs terminado.\e[0m"
+			echo -e "\e[33mIniciando Nginx\e[0m"
+			_Nginx
+			echo -e "\e[33mPaso Nginx terminado.\e[0m"
+			echo -e "\e[33mIniciando Pm2\e[0m"
+			_Pm2 
+			echo -e "\e[33mPaso Pm2 terminado.\e[0m"
+			echo -e "\e[33mIniciando Git\e[0m"
+			_Git
+			echo -e "\e[33mPaso Git terminado.\e[0m"
+			creaArchivoCredencialesAuto
+			configuraPostgreSQLAuto
+			reestablecePasswordPostgreSQLAuto
+			echo -e "\e[33mPaso 1 terminado.\e[0m"
+			recuperaArchivoCredenciales
+			uC=$usuarioCaptura
+			uD=$usuarioDashboard
+			psw=$password
+			paso2Auto "$respuestaUsuarioCaptura"  "$respuestaUsuarioDashboard"	"$respuestaPassword"
+			echo -e "\e[33mPaso 2 terminado.\e[0m"
+			paso3Auto
+			echo -e "\e[33mPaso 3 terminado.\e[0m"
+			paso4 "$respuestaUsuarioCaptura"  "$respuestaPassword"
+			echo -e "\e[33mPaso 4 terminado.\e[0m"
+			paso5 "$respuestaUsuarioCaptura"  "$respuestaPassword"
+			echo -e "\e[33mPaso 5 terminado.\e[0m"
+			paso6 "$respuestaUsuarioDashboard"
+			echo -e "\e[33mPaso 6 terminado.\e[0m"
+			paso7 "$respuestaUsuarioDashboard"
+			echo -e "\e[33mPaso 7 terminado.\e[0m"
+			paso8 "$respuestaUsuarioDashboard"
+			echo -e "\e[33mPaso 8 terminado.\e[0m"
+			paso9
+			echo -e "\e[33mPaso 9 terminado.\e[0m"
+			paso10
+			echo -e "\e[33mPaso 10 terminado.\e[0m"	
+			paso11
+			echo -e "\e[33mPaso 11 terminado.\e[0m"	
+			paso12
+			echo -e "\e[33mPaso 12 terminado.\e[0m"	
+			paso13
+			echo -e "\e[33mPaso 13 terminado.\e[0m"	
+			paso14
+			echo -e "\e[33mPaso 14 terminado.\e[0m"	
+			paso15
+			echo -e "\e[33mPaso 15 terminado.\e[0m"	
 	fi
 
-	clear
-	echo -e "\033[31m#####################################################################\033[0m"
-	echo -e "\033[32m#### CONFIGURAR Y DESPLEGAR LA PLATAFORMA DE COMPRAS ABIERTAS INAI ##\033[0m"
-	echo -e "\033[31m#####################################################################\033[0m"
-	echo "Desea iniciar la configuración y despliegue de la Plataforma de Compras Abiertas [S/N]:"
-      		read respuestaConfigurarDesplegarCA
-	if [[ "$respuestaConfigurarDesplegarCA" =~ ^(Si|S|s)$ ]]; then
-               #echo "Iniciando la configuración y despliegue de la Plataforma de Compras Abiertas"
-               seleccionaOpcionMenu
-	fi	
+
+
 
 }
 
