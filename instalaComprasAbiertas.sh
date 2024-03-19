@@ -715,7 +715,9 @@ paso14()
 
 paso15()
 {
-	echo "Ya puede abrir la Plataforma de Compras Abiertas del INAI configurada y desplegada automaticamente por la SESEAP, solo presione la tecla CTRL y habla click sobre el siguiente link: \033[33m http://localhost:3000 \033[0m. "	
+	echo -e "\033[33m La Plataforma de Compras Abiertas del INAI esta ya configurada y desplegada en este equipo \033[0m"
+	echo -e "\033[33m ,ahora para iniciar su uso solo presione la tecla CTRL y haga click sobre el siguiente link: \033[0m"
+	echo -e "\033[33m http://localhost:3000 \033[0m"
 	cd /
 	# Mostrar un mensaje informativo
 }
@@ -1062,87 +1064,103 @@ seleccionaOpcionMenu()
 Principal()
 {
 	clear
-	echo -e "\033[31m#####################################################################\033[0m"
-	echo -e "\033[32m## SECRETARÍA EJECUTIVA DEL SISTEMA ESTATAL ANTICORRUPCIÓN PUEBLA ###\033[0m"
-	echo -e "\033[31m#####################################################################\033[0m"
-
-	echo "\033[33m¿Que tipo de instalación desea?    -Automática (A/a)    -Paso a Paso (P/p)\033[0m"
+	#Con texto en negrita y color
+	echo -e "\033[1;32m ##################################################################### \033[0m"
+	echo -e "\033[1;32m ## SECRETARÍA EJECUTIVA DEL SISTEMA ESTATAL ANTICORRUPCIÓN PUEBLA ### \033[0m"
+	echo -e "\033[1;32m ##################################################################### \033[0m"
+	echo ""
+	#Texto amarillo
+	echo -e "\033[33m¿Que tipo de instalación desea?\033[0m"
+	#Texto verde
+	echo -e "\033[32m Automática  (A/a) \033[0m"
+	echo -e "\033[33m Paso a Paso (P/p) \033[0m"
 	read respuestaTipoInstalacion
 	if [[ "$respuestaTipoInstalacion" =~ ^(P|p)$ ]]; then
-
-			echo "\033[33m¿Instalar los paquetes/software necesarios para ejecutar la plataforma [S/N]?\033[0m"
+			echo -e "\033[33m ¿Instalar los paquetes/software necesarios para ejecutar la plataforma [S/N]? \033[0m"
 			read respuestaPrerequisitos
 			if [[ "$respuestaPrerequisitos" =~ ^(Si|S|s)$ ]]; then
-				echo "Se procede a instalar prerequisitos"
 				prerrequisitosInstalacion
 			fi
 
-			echo "\033[33m¿Configurar y desplegar la Plataforma de Compras Abiertas del INAI [S/N]? \033[0m"
-			echo "Desea iniciar la configuración y despliegue de la Plataforma de Compras Abiertas [S/N]:"
-					read respuestaConfigurarDesplegarCA
+			echo "\033[33m Desea iniciar la configuración y despliegue de la Plataforma de Compras Abiertas [S/N] \033[0m"
+			read respuestaConfigurarDesplegarCA
 			if [[ "$respuestaConfigurarDesplegarCA" =~ ^(Si|S|s)$ ]]; then
-					#echo "Iniciando la configuración y despliegue de la Plataforma de Compras Abiertas"
 					seleccionaOpcionMenu
 			fi	
 	else
-			echo "\033[44mSe procede a instalar todo el software necesario\033[0m"
-			echo -e "\e[33mIniciando Visual Code.\e[0m"
+			echo -e "\033[1;32m ########################################## \033[0m"
+			echo -e "\033[1;32m ####### INSTALANDO S O F T W A R E ####### \033[0m"
+			echo -e "\033[1;32m ########################################## \033[0m"
+			echo -e "\033[32m Se procede a instalar todo el software necesario \033[0m"
+			echo ""
+			echo -e "\033[37m Iniciando Visual Code \033[0m"
 			_VisualCode
-			echo -e "\e[33mPaso Visual Code terminado.\e[0m"
-			echo -e "\e[33mIniciando PostgreSQL.\e[0m"
+			echo -e "\033[32m Paso Visual Code terminado. \033[0m"
+			echo -e "\033[37m Iniciando PostgreSQL. \033[0m"
 			_PostgreSQL
-			echo -e "\e[33mPaso PostgreSQL terminado.\e[0m"
-			echo -e "\e[33mIniciando Mongo DB\e[0m"
+			echo -e "\033[32m Paso PostgreSQL terminado. \033[0m"
+			echo -e "\033[37m Iniciando Mongo DB \033[0m"
 			_MongoDB
-			echo -e "\e[33mPaso Mongo DB terminado.\e[0m"
-			echo -e "\e[33mIniciando NodeJs\e[0m"
+			echo -e "\033[32m Paso Mongo DB terminado. \033[0m"
+			echo -e "\033[37m Iniciando NodeJs \033[0m"
 			_NodeJs
-			echo -e "\e[33mPaso NodeJs terminado.\e[0m"
-			echo -e "\e[33mIniciando Nginx\e[0m"
+			echo -e "\033[32m Paso NodeJs terminado. \033[0m"
+			echo -e "\033[37m Iniciando Nginx \033[0m"
 			_Nginx
-			echo -e "\e[33mPaso Nginx terminado.\e[0m"
-			echo -e "\e[33mIniciando Pm2\e[0m"
+			echo -e "\033[32m Paso Nginx terminado. \033[0m"
+			echo -e "\033[37m Iniciando Pm2 \033[0m"
 			_Pm2 
-			echo -e "\e[33mPaso Pm2 terminado.\e[0m"
-			echo -e "\e[33mIniciando Git\e[0m"
+			echo -e "\033[32m Paso Pm2 terminado. \033[0m"
+			echo -e "\033[37m Iniciando Git \033[0m"
 			_Git
-			echo -e "\e[33mPaso Git terminado.\e[0m"
+			echo -e "\033[32m Paso Git terminado. \033[0m"
+
+			echo -e "\033[1;32m ############################################ \033[0m"
+			echo -e "\033[1;32m ## INICIANDO  C O N F I G U R A C I Ó N  ### \033[0m"
+			echo -e "\033[1;32m ############################################ \033[0m"
+			echo -e "\033[32m Se procede a configurar la plataforma \033[0m"
+			echo ""			
 			creaArchivoCredencialesAuto
 			configuraPostgreSQLAuto
 			reestablecePasswordPostgreSQLAuto
-			echo -e "\e[33mPaso 1 terminado.\e[0m"
+			echo -e "\033[32m Paso 1 terminado. \033[0m"
 			recuperaArchivoCredenciales
 			uC=$usuarioCaptura
 			uD=$usuarioDashboard
 			psw=$password
 			paso2Auto "$respuestaUsuarioCaptura"  "$respuestaUsuarioDashboard"	"$respuestaPassword"
-			echo -e "\e[33mPaso 2 terminado.\e[0m"
+			echo -e "\033[32m Paso 2 terminado. \033[0m"
 			paso3Auto
-			echo -e "\e[33mPaso 3 terminado.\e[0m"
+			echo -e "\033[32m Paso 3 terminado. \033[0m"
 			paso4 "$respuestaUsuarioCaptura"  "$respuestaPassword"
-			echo -e "\e[33mPaso 4 terminado.\e[0m"
+			echo -e "\033[32m Paso 4 terminado. \033[0m"
 			paso5 "$respuestaUsuarioCaptura"  "$respuestaPassword"
-			echo -e "\e[33mPaso 5 terminado.\e[0m"
+			echo -e "\033[32m Paso 5 terminado. \033[0m"
 			paso6 "$respuestaUsuarioDashboard"
-			echo -e "\e[33mPaso 6 terminado.\e[0m"
+			echo -e "\033[32m Paso 6 terminado. \033[0m"
 			paso7 "$respuestaUsuarioDashboard"
-			echo -e "\e[33mPaso 7 terminado.\e[0m"
+			echo -e "\033[32m Paso 7 terminado. \033[0m"
 			paso8 "$respuestaUsuarioDashboard"
-			echo -e "\e[33mPaso 8 terminado.\e[0m"
+			echo -e "\033[32m Paso 8 terminado. \033[0m"
 			paso9
-			echo -e "\e[33mPaso 9 terminado.\e[0m"
+			echo -e "\033[32m Paso 9 terminado. \033[0m"
 			paso10
-			echo -e "\e[33mPaso 10 terminado.\e[0m"	
+			echo -e "\033[32m Paso 10 terminado. \033[0m"	
 			paso11
-			echo -e "\e[33mPaso 11 terminado.\e[0m"	
+			echo -e "\033[32m Paso 11 terminado. \033[0m"	
 			paso12
-			echo -e "\e[33mPaso 12 terminado.\e[0m"	
+			echo -e "\033[32m Paso 12 terminado. \033[0m"	
 			paso13
-			echo -e "\e[33mPaso 13 terminado.\e[0m"	
+			echo -e "\033[32m Paso 13 terminado. \033[0m"	
 			paso14
-			echo -e "\e[33mPaso 14 terminado.\e[0m"	
+			echo -e "\033[32m Paso 14 terminado. \033[0m"	
 			paso15
-			echo -e "\e[33mPaso 15 terminado.\e[0m"	
+			echo -e "\033[32m Paso 15 terminado. \033[0m"	
+			echo ""
+			echo ""
+			echo -e "\033[1;32m ######################################################### \033[0m"
+			echo -e "\033[1;32m ## PLATAFORMA DE COMPRAS ABIERTAS DEL INAI FINALIZADA ### \033[0m"
+			echo -e "\033[1;32m ######################################################### \033[0m"			
 	fi
 
 
