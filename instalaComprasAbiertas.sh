@@ -1069,25 +1069,6 @@ Principal()
 	echo -e "\033[1;32m ## SECRETARÍA EJECUTIVA DEL SISTEMA ESTATAL ANTICORRUPCIÓN PUEBLA ### \033[0m"
 	echo -e "\033[1;32m ##################################################################### \033[0m"
 	echo ""
-	#Texto amarillo
-	echo -e "\033[33m¿Que tipo de instalación desea?\033[0m"
-	#Texto verde
-	echo -e "\033[32m Automática  (A/a) \033[0m"
-	echo -e "\033[33m Paso a Paso (P/p) \033[0m"
-	read respuestaTipoInstalacion
-	if [[ "$respuestaTipoInstalacion" =~ ^(P|p)$ ]]; then
-			echo -e "\033[33m ¿Instalar los paquetes/software necesarios para ejecutar la plataforma [S/N]? \033[0m"
-			read respuestaPrerequisitos
-			if [[ "$respuestaPrerequisitos" =~ ^(Si|S|s)$ ]]; then
-				prerrequisitosInstalacion
-			fi
-
-			echo "\033[33m Desea iniciar la configuración y despliegue de la Plataforma de Compras Abiertas [S/N] \033[0m"
-			read respuestaConfigurarDesplegarCA
-			if [[ "$respuestaConfigurarDesplegarCA" =~ ^(Si|S|s)$ ]]; then
-					seleccionaOpcionMenu
-			fi	
-	else
 			echo -e "\033[1;32m ########################################## \033[0m"
 			echo -e "\033[1;32m ####### INSTALANDO S O F T W A R E ####### \033[0m"
 			echo -e "\033[1;32m ########################################## \033[0m"
@@ -1161,11 +1142,6 @@ Principal()
 			echo -e "\033[1;32m ######################################################### \033[0m"
 			echo -e "\033[1;32m ## PLATAFORMA DE COMPRAS ABIERTAS DEL INAI FINALIZADA ### \033[0m"
 			echo -e "\033[1;32m ######################################################### \033[0m"			
-	fi
-
-
-
-
 }
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
